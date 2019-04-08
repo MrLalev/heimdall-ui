@@ -8,25 +8,27 @@
   <ion-slides pager="true" [options]="slideOpts">
       <ion-slide>
         <div class="slide-item">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>Sing in</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-item>
-                  <ion-label class="input-label" position="stacked">Email Address <span>*</span></ion-label>
-                  <ion-input clearInput type="email"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label class="input-label" position="stacked">Password <span>*</span></ion-label>
-                <ion-input type="password"></ion-input>
-            </ion-item>
-              <ion-button class="sign-in-btn">
-                <ion-icon slot="start" name="key" expand="full" fill="outline"></ion-icon>
-                Sing in
-              </ion-button>
-          </ion-card-content>
-          </ion-card>
+          <form [formGroup]="singInForm">
+              <ion-card>
+                  <ion-card-header>
+                    <ion-card-subtitle>Sing in</ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-item>
+                        <ion-label class="input-label" position="stacked">Email Address <span>*</span></ion-label>
+                        <ion-input formControlName="email" clearInput type="email"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label class="input-label" position="stacked">Password <span>*</span></ion-label>
+                      <ion-input  formControlName="password" type="password"></ion-input>
+                  </ion-item>
+                    <ion-button class="sign-in-btn" (click)="onSingIn()">
+                      <ion-icon slot="start" name="key" expand="full" fill="outline"></ion-icon>
+                      Sing in
+                    </ion-button>
+                </ion-card-content>
+              </ion-card>
+          </form>
         </div>
       </ion-slide>
       <ion-slide>
