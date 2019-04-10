@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   
   slideOpts = {
     effect: 'flip',
-    allowTouchMove: false,
+    // allowTouchMove: false,
   };
 
   singInForm = this.fb.group({
@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
   };
 
   activeSlide = this.slides.singIn;
+  isTabChangeByTouchEvent = true;
 
   constructor(private authService: AuthService, private fb: FormBuilder) { }
 
@@ -43,6 +44,7 @@ export class LoginPage implements OnInit {
   }
 
   onChangeSlide(slide) {
+    this.isTabChangeByTouchEvent = false;
     switch (slide) {
       case 'REGISTER':
           this.activeSlide = slide;
@@ -58,6 +60,25 @@ export class LoginPage implements OnInit {
         break;
     }
 
+  }
+
+  onTouchSlideChange() {
+    if (this.isTabChangeByTouchEvent) {
+      switch (this.activeSlide) {
+        case 'REGISTER':
+            this.activeSlide = this.slides.singIn;
+            this.slider.slidePrev();
+          break;
+        case 'SINGIN':
+            this.activeSlide = this.slides.register;
+            this.slider.slideNext();
+          break;
+        default:
+          break;
+      }
+    } else {
+      this.isTabChangeByTouchEvent = true;
+    }
   }
 
 }

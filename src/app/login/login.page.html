@@ -21,7 +21,7 @@
         </ion-card>
   </div>
 
-  <ion-slides [options]="slideOpts" #slider>
+  <ion-slides [options]="slideOpts" #slider (ionSlideDidChange)="onTouchSlideChange()">
       <ion-slide>
         <div>
           <form [formGroup]="singInForm">
