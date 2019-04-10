@@ -14,8 +14,8 @@ export class LoginPage implements OnInit {
   };
 
   singInForm = this.fb.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
+    email: [''],
+    password: [''],
   });
 
   constructor(private authService: AuthService, private fb: FormBuilder) { }
