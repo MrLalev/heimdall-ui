@@ -5,9 +5,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides pager="true" [options]="slideOpts">
+  <div>
+      <ion-card class="login-navigation">
+          <ion-card-header>
+            <ion-card-subtitle>
+                <span [ngClass]="{ 'active-tab': activeSlide === slides.singIn, 'not-active-tab': activeSlide !== slides.singIn }" (click)="onChangeSlide(slides.singIn)">
+                    Sing in
+                </span>
+                <span class="separator"> | </span>
+                <span [ngClass]="{ 'active-tab': activeSlide === slides.register, 'not-active-tab': activeSlide !== slides.register }" (click)="onChangeSlide(slides.register)">
+                    Register
+                </span>
+            </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+  </div>
+
+  <ion-slides [options]="slideOpts" #slider>
       <ion-slide>
-        <div class="slide-item">
+        <div>
           <form [formGroup]="singInForm">
               <ion-card>
                   <ion-card-header>
@@ -32,7 +48,7 @@
         </div>
       </ion-slide>
       <ion-slide>
-        <div class="slide-item">
+        <div>
           <ion-card>
             <ion-card-header>
               <ion-card-subtitle>Register</ion-card-subtitle>

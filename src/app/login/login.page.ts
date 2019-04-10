@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../api/auth.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,24 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  @ViewChild('slider') slider: ElementRef;
+  
   slideOpts = {
-    effect: 'flip'
+    effect: 'flip',
+    allowTouchMove: false,
   };
 
   singInForm = this.fb.group({
     email: [''],
     password: [''],
   });
+
+  slides = {
+    singIn: 'SINGIN',
+    register: 'REGISTER',
+  };
+
+  activeSlide = this.slides.singIn;
 
   constructor(private authService: AuthService, private fb: FormBuilder) { }
 
@@ -29,6 +40,24 @@ export class LoginPage implements OnInit {
     if (this.singInForm.valid) {
       this.authService.authorize(email, password);
     }
+  }
+
+  onChangeSlide(slide) {
+    switch (slide) {
+      case 'REGISTER':
+          this.activeSlide = slide;
+          this.slider.slideNext();
+        break;
+      case 'SINGIN':
+          this.activeSlide = slide;
+          this.slider.slidePrev();
+        break;
+      default:
+        this.activeSlide = this.slides.singIn;
+        this.slider.slidePrev();
+        break;
+    }
+
   }
 
 }

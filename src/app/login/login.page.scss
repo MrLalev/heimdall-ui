@@ -10,6 +10,23 @@
     margin-top: 20px;
 }
 
-.slide-item {
-    min-height: 87vh;
+.login-navigation {
+    width: 288px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.separator {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.active-tab {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ion-color-primary);
+}
+
+.not-active-tab {
+    text-transform: uppercase;
 }
