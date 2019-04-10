@@ -3,18 +3,19 @@ import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloLink} from 'apollo-boost';
+import {AuthService} from './api/auth.service';
+import { AuthTokenData } from './api/models/auth-tokens.model';
 
 const uri = 'http://localhost:8080/graphql';
 
 const authLink = new ApolloLink((operation, forward) => {
-  const token = localStorage.getItem('auth_token');
+  const authData = AuthService.getAuthTokenData();
   operation.setContext({
     headers: {
-      authorization: token ? `Bearer ${token}` : ''
+      'x-token': authData.token ? authData.token : '',
+      'x-refresh-token': authData.refreshToken ? authData.refreshToken : '',
     }
   });
-
-  console.log('here');
 
   return forward(operation);
 });
@@ -24,15 +25,16 @@ const afterwareLink = new ApolloLink((operation, forward) => {
     const context = operation.getContext();
     const { response: { headers } } = context;
 
-    console.log(context);
-    // if (headers) {
-    //   const token = headers.get("x-refresh-token");
+    if (headers) {
+      const authData = AuthService.getAuthTokenData();
+      const token = headers.get('x-token');
+      const refreshToken = headers.get('x-refresh-token');
 
-    //   if (token) {
-    //     localStorage.setItem("token", token);
-    //   }
+      if (token && refreshToken && authData.token !== token) {
+        AuthService.setAuthTokenData(new AuthTokenData(token, refreshToken));
+      }
 
-    // }
+    }
     return response;
   });
 });

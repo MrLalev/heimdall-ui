@@ -27,20 +27,4 @@ export class UserService {
       console.log(result);
     });
   }
-
-  authorize(email, password) {
-    this.apollo.mutate({
-      mutation: gql`
-        mutation {
-          authorize(input: {email: "${email}", password: "${password}"}) {
-            token,
-            refreshToken
-          }
-        }
-      `,
-    })
-    .subscribe((result: any) => {
-      console.log(result);
-    });
-  }
 }

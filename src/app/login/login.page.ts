@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../api/user.service';
+import { AuthService } from '../api/auth.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     password: ['', Validators.required],
   });
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private fb: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     const email = this.singInForm.controls['email'].value;
     const password = this.singInForm.controls['password'].value;
     if (this.singInForm.valid) {
-      this.userService.authorize(email, password);
+      this.authService.authorize(email, password);
     }
   }
 
