@@ -48,15 +48,15 @@ export class LoginPage implements OnInit {
     switch (slide) {
       case 'REGISTER':
           this.activeSlide = slide;
-          this.slider.slideNext();
+          this.slider['slideNext']();
         break;
       case 'SINGIN':
           this.activeSlide = slide;
-          this.slider.slidePrev();
+          this.slider['slidePrev']();
         break;
       default:
         this.activeSlide = this.slides.singIn;
-        this.slider.slidePrev();
+        this.slider['slidePrev']();
         break;
     }
 
@@ -67,11 +67,11 @@ export class LoginPage implements OnInit {
       switch (this.activeSlide) {
         case 'REGISTER':
             this.activeSlide = this.slides.singIn;
-            this.slider.slidePrev();
+            this.slider['slidePrev']();
           break;
         case 'SINGIN':
             this.activeSlide = this.slides.register;
-            this.slider.slideNext();
+            this.slider['slideNext']();
           break;
         default:
           break;
