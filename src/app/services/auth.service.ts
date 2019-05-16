@@ -40,9 +40,14 @@ export class AuthService {
         }
       `,
     })
-    .subscribe((result: any) => {
-      const data = result.data.authorize;
-      AuthService.setAuthTokenData({token: data.token, refreshToken: data.refreshToken});
-    });
+    .subscribe(
+      (result: any) => {
+        const data = result.data.authorize;
+        AuthService.setAuthTokenData({token: data.token, refreshToken: data.refreshToken});
+      },
+      (mutationError: any) => {
+        this.store.dispatch(new AuthActions.SetAuthError(mutationError.graphQLErrors[0].message));
+      },
+    );
   }
 }

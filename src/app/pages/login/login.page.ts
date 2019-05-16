@@ -3,9 +3,10 @@ import { AuthService } from '../../services/auth.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AuthModel } from '../../store/models/auth.model';
+import { Store, select } from '@ngrx/store';
+import { AuthStoreModel } from '../../store/models/auth.model';
 import { AppState } from '../../app.state';
+import * as AuthActions from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,7 @@ import { AppState } from '../../app.state';
 })
 export class LoginPage implements OnInit {
   @ViewChild('slider') slider: ElementRef;
-  // TODO: REMOVE THIS
-  authData: Observable<AuthModel>;
-
+  authData: Observable<AuthStoreModel>;
 
   slideOpts = {
     effect: 'flip',
@@ -36,9 +35,7 @@ export class LoginPage implements OnInit {
   activeSlide = this.slides.logIn;
 
   constructor(private authService: AuthService, private fb: FormBuilder, private store: Store<AppState>) {
-    // TODO: REMOVE THIS
-    this.authData = store.select('auth');
-    this.authData.subscribe(data => console.log(data));
+    this.authData = this.store.pipe(select('auth'));
   }
 
   ngOnInit() {
@@ -57,6 +54,7 @@ export class LoginPage implements OnInit {
       case 'SINGUP':
           this.activeSlide = slide;
           this.slider['slideNext']();
+          this.store.dispatch(new AuthActions.SetAuthError(null));
         break;
       case 'LOGIN':
           this.activeSlide = slide;

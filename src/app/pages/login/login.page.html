@@ -25,7 +25,7 @@
           SINGUP
         </span>
       </div>
-
+      <p class="error-container" *ngIf="(authData | async)?.error"> <ion-icon name="alert"></ion-icon> {{ (authData | async)?.error }}</p>
       <ion-slides [options]="slideOpts" #slider>
         <ion-slide>
           <div class="form-container">
