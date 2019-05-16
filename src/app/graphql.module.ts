@@ -3,8 +3,8 @@ import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloLink} from 'apollo-boost';
-import {AuthService} from './api/auth.service';
-import { AuthTokenData } from './api/models/auth-tokens.model';
+import {AuthService} from './services/auth.service';
+import { AuthModel } from './store/models/auth.model';
 
 const uri = 'http://localhost:3000/graphql';
 
@@ -31,7 +31,7 @@ const afterwareLink = new ApolloLink((operation, forward) => {
       const refreshToken = headers.get('x-refresh-token');
 
       if (token && refreshToken && authData.token !== token) {
-        AuthService.setAuthTokenData(new AuthTokenData(token, refreshToken));
+        AuthService.setAuthTokenData({ token, refreshToken});
       }
 
     }

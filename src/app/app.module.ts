@@ -11,12 +11,18 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GraphQLModule } from './graphql.module';
 
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './store/reducers/auth.reducer';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    StoreModule.forRoot({
+      auth: authReducer
+    }),
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule
