@@ -1,83 +1,81 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Heimdall</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="login-page">
+  <div class="login-wrapper">
+    <div>
+      <p class="logo-text">HEIMDALL</p>
+    </div>
+    <div class="login-container">
+      <div class="navigation">
+        <span
+          [ngClass]="{
+            'active-tab': activeSlide === slides.logIn,
+            'not-active-tab': activeSlide !== slides.logIn
+          }"
+          (click)="onChangeSlide(slides.logIn)"
+        >
+          LOGIN
+        </span>
+        <span class="separator"> | </span>
+        <span
+          [ngClass]="{
+            'active-tab': activeSlide === slides.singUp,
+            'not-active-tab': activeSlide !== slides.singUp
+          }"
+          (click)="onChangeSlide(slides.singUp)"
+        >
+          SINGUP
+        </span>
+      </div>
 
-<ion-content>
-  <div>
-      <ion-card class="login-navigation">
-          <ion-card-header>
-            <ion-card-subtitle>
-                <span [ngClass]="{ 'active-tab': activeSlide === slides.singIn, 'not-active-tab': activeSlide !== slides.singIn }" (click)="onChangeSlide(slides.singIn)">
-                    Sing in
-                </span>
-                <span class="separator"> | </span>
-                <span [ngClass]="{ 'active-tab': activeSlide === slides.register, 'not-active-tab': activeSlide !== slides.register }" (click)="onChangeSlide(slides.register)">
-                    Register
-                </span>
-            </ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
+      <ion-slides [options]="slideOpts" #slider>
+        <ion-slide>
+          <div class="form-container">
+            <form [formGroup]="singInForm">
+              <ion-item>
+                <ion-input
+                  formControlName="email"
+                  type="email"
+                  placeholder="Email"
+                ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input
+                  formControlName="password"
+                  type="password"
+                  placeholder="Password"
+                ></ion-input>
+              </ion-item>
+              <ion-button
+                class="sign-in-btn"
+                (click)="onSingIn()"
+                expand="block"
+              >
+                Sing in
+              </ion-button>
+            </form>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <div class="form-container">
+            <form>
+              <ion-item>
+                <ion-input type="text" placeholder="First Name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Last Name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" placeholder="Email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" placeholder="Password"></ion-input>
+              </ion-item>
+              <ion-button expand="block" class="sign-in-btn">
+                Sing up
+              </ion-button>
+            </form>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
   </div>
-
-  <ion-slides [options]="slideOpts" #slider (ionSlideDidChange)="onTouchSlideChange()">
-      <ion-slide>
-        <div>
-          <form [formGroup]="singInForm">
-              <ion-card>
-                  <ion-card-header>
-                    <ion-card-subtitle>Sing in</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-item>
-                        <ion-label class="input-label" position="stacked">Email Address <span>*</span></ion-label>
-                        <ion-input formControlName="email" clearInput type="email"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                      <ion-label class="input-label" position="stacked">Password <span>*</span></ion-label>
-                      <ion-input  formControlName="password" type="password"></ion-input>
-                  </ion-item>
-                    <ion-button class="sign-in-btn" (click)="onSingIn()">
-                      <ion-icon slot="start" name="key" expand="full" fill="outline"></ion-icon>
-                      Sing in
-                    </ion-button>
-                </ion-card-content>
-              </ion-card>
-          </form>
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div>
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>Register</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-item>
-                    <ion-label class="input-label" position="stacked" type="text">First Name <span>*</span></ion-label>
-                    <ion-input clearInput></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label class="input-label" position="stacked" type="text">Last Name <span>*</span></ion-label>
-                    <ion-input clearInput></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label class="input-label" position="stacked" type="email">Email Address <span>*</span></ion-label>
-                    <ion-input clearInput></ion-input>
-                </ion-item>
-                <ion-button class="sign-in-btn" >
-                    <ion-icon slot="start" name="today" expand="full" fill="outline"></ion-icon>
-                    Register
-                </ion-button>
-            </ion-card-content>
-          </ion-card>
-        </div>
-      </ion-slide>
-    </ion-slides>
 </ion-content>
-
-<ion-footer>
-    <ion-toolbar color="primary">
-    </ion-toolbar>
-  </ion-footer>

@@ -6,7 +6,7 @@ import {ApolloLink} from 'apollo-boost';
 import {AuthService} from './api/auth.service';
 import { AuthTokenData } from './api/models/auth-tokens.model';
 
-const uri = 'http://localhost:8080/graphql';
+const uri = 'http://localhost:3000/graphql';
 
 const authLink = new ApolloLink((operation, forward) => {
   const authData = AuthService.getAuthTokenData();

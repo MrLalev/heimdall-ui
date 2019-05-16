@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   
   slideOpts = {
     effect: 'flip',
-    // allowTouchMove: false,
+    allowTouchMove: false,
   };
 
   singInForm = this.fb.group({
@@ -23,12 +23,11 @@ export class LoginPage implements OnInit {
   });
 
   slides = {
-    singIn: 'SINGIN',
-    register: 'REGISTER',
+    logIn: 'LOGIN',
+    singUp: 'SINGUP',
   };
 
-  activeSlide = this.slides.singIn;
-  isTabChangeByTouchEvent = true;
+  activeSlide = this.slides.logIn;
 
   constructor(private authService: AuthService, private fb: FormBuilder) { }
 
@@ -44,41 +43,21 @@ export class LoginPage implements OnInit {
   }
 
   onChangeSlide(slide) {
-    this.isTabChangeByTouchEvent = false;
     switch (slide) {
-      case 'REGISTER':
+      case 'SINGUP':
           this.activeSlide = slide;
           this.slider['slideNext']();
         break;
-      case 'SINGIN':
+      case 'LOGIN':
           this.activeSlide = slide;
           this.slider['slidePrev']();
         break;
       default:
-        this.activeSlide = this.slides.singIn;
+        this.activeSlide = this.slides.logIn;
         this.slider['slidePrev']();
         break;
     }
 
-  }
-
-  onTouchSlideChange() {
-    if (this.isTabChangeByTouchEvent) {
-      switch (this.activeSlide) {
-        case 'REGISTER':
-            this.activeSlide = this.slides.singIn;
-            this.slider['slidePrev']();
-          break;
-        case 'SINGIN':
-            this.activeSlide = this.slides.register;
-            this.slider['slideNext']();
-          break;
-        default:
-          break;
-      }
-    } else {
-      this.isTabChangeByTouchEvent = true;
-    }
   }
 
 }
