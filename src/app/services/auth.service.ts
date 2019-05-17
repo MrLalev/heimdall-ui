@@ -13,10 +13,7 @@ import { Store } from '@ngrx/store';
 })
 export class AuthService {
 
-  constructor(private apollo: Apollo, private store: Store<AppState>) { 
-    AuthService.authTokens.subscribe(tokens => {
-      this.store.dispatch(new AuthActions.SetAuthData(tokens));
-    });
+  constructor(private apollo: Apollo, private store: Store<AppState>) {
   }
 
   private static authTokens = new BehaviorSubject<AuthModel>({token: null, refreshToken: null});
@@ -35,7 +32,12 @@ export class AuthService {
         mutation {
           authorize(input: {email: "${email}", password: "${password}"}) {
             token,
-            refreshToken
+            refreshToken,
+            user {
+              _id,
+              first_name,
+              last_name
+            }
           }
         }
       `,
@@ -44,6 +46,7 @@ export class AuthService {
       (result: any) => {
         const data = result.data.authorize;
         AuthService.setAuthTokenData({token: data.token, refreshToken: data.refreshToken});
+        this.store.dispatch(new AuthActions.SetAuthData({ user: result.data.authorize.user }));
       },
       (mutationError: any) => {
         this.store.dispatch(new AuthActions.SetAuthError(mutationError.graphQLErrors[0].message));

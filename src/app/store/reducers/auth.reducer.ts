@@ -3,8 +3,7 @@ import { AuthStoreModel } from '../models/auth.model';
 import * as AuthActions from '../actions/auth.actions';
 
 const initialState: AuthStoreModel = {
-    token: null,
-    refreshToken: null,
+    user: null,
     error: null,
 };
 
@@ -13,7 +12,7 @@ export function authReducer(state: AuthStoreModel = initialState, action: AuthAc
         case AuthActions.SET_AUTH_DATA:
             return { ...state, ...action.payload, error: null };
         case AuthActions.SET_AUTH_ERROR:
-            return { ...state, error: action.payload, token: null, refreshToken: null };
+            return { ...state, error: action.payload, user: null };
         default:
             return state;
     }

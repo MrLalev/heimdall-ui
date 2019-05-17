@@ -7,7 +7,8 @@ export const SET_AUTH_ERROR = '[AUTH] ERROR';
 export class SetAuthData implements Action {
     readonly type = SET_AUTH_DATA;
 
-    constructor(public payload: AuthModel) {}
+    // TODO: ADD USER TYPE
+    constructor(public payload: { user: any }) {}
 }
 
 export class SetAuthError implements Action {

@@ -4,7 +4,7 @@ export interface AuthModel {
 }
 
 export interface AuthStoreModel {
-    token: string;
-    refreshToken: string;
+    // TODO: ADD USER TYPE
+    user: any;
     error: string;
 }
