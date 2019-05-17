@@ -3,6 +3,7 @@ export interface AuthModel {
     refreshToken: string;
 }
 
+// TODO: ADD LOADING STATE
 export interface AuthStoreModel {
     // TODO: ADD USER TYPE
     user: any;

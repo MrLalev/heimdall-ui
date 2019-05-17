@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   authorize(email, password) {
-    this.apollo.mutate({
+    return this.apollo.mutate({
       mutation: gql`
         mutation {
           authorize(input: {email: "${email}", password: "${password}"}) {
@@ -41,16 +41,6 @@ export class AuthService {
           }
         }
       `,
-    })
-    .subscribe(
-      (result: any) => {
-        const data = result.data.authorize;
-        AuthService.setAuthTokenData({token: data.token, refreshToken: data.refreshToken});
-        this.store.dispatch(new AuthActions.SetAuthData({ user: result.data.authorize.user }));
-      },
-      (mutationError: any) => {
-        this.store.dispatch(new AuthActions.SetAuthError(mutationError.graphQLErrors[0].message));
-      },
-    );
+    });
   }
 }

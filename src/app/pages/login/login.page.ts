@@ -56,9 +56,8 @@ export class LoginPage implements OnInit, OnDestroy {
   onSingIn() {
     const email = this.singInForm.controls['email'].value;
     const password = this.singInForm.controls['password'].value;
-    if (this.singInForm.valid) {
-      this.authService.authorize(email, password);
-    }
+
+    this.store.dispatch(new AuthActions.SendAuthData({ email, password}));
   }
 
   onChangeSlide(slide) {
@@ -77,7 +76,5 @@ export class LoginPage implements OnInit, OnDestroy {
         this.slider['slidePrev']();
         break;
     }
-
   }
-
 }

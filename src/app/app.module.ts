@@ -10,9 +10,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GraphQLModule } from './graphql.module';
+import { EffectsModule } from '@ngrx/effects';
 
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/reducers/auth.reducer';
+import { effects } from './store/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,7 @@ import { authReducer } from './store/reducers/auth.reducer';
     StoreModule.forRoot({
       auth: authReducer
     }),
+    EffectsModule.forRoot(effects),
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule
