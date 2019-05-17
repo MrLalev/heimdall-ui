@@ -17,16 +17,24 @@
 
 :root {
     --ion-color-primary: #2b2b3d !important;
+    --ion-color-primary-shade: #2b2b3d !important;
     * {
         font-family: 'Lalezar-Regular';
     }
     .login-page {
         --ion-color-success: #fff !important;
         --ion-background-color: #333346 !important;
+        --background-focused: #333346 !important;
+        --ion-item-background-activated: #333346 !important;
+        --ion-color-primary-shade: #2b2b3d !important;
         --ion-text-color: #fff !important;
         --ion-color-primary-shade: rgba(255, 255, 255, 0.8) !important;
         ion-input {
             --padding-bottom: 0px;
+        }
+
+        ion-button {
+            --ion-color-primary-shade: #2b2b3d !important;
         }
 
         ::placeholder { 
