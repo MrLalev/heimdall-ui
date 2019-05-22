@@ -13,15 +13,15 @@ export class AuthEffects {
 
     @Effect()
     authorize$ = this.actions$.pipe(
-        ofType(AuthActions.SEND_AUTH_DATA),
+        ofType(AuthActions.AUTH_USER),
         switchMap((action: any) => {
             return this.authService.authorize(action.payload.email, action.payload.password).pipe(
                 map(result => {
                     AuthService.setAuthTokenData({token: result.token, refreshToken: result.refreshToken});
-                    return new AuthActions.SetAuthData({user: result.data.authorize.user});
+                    return new AuthActions.AuthUserSuccessAction({user: result.data.authorize.user});
                 }),
                 catchError((error: any) => {
-                    return of(new AuthActions.SetAuthError(error.graphQLErrors[0].message));
+                    return of(new AuthActions.AuthUserErrorAction(error.graphQLErrors[0].message));
                 })
             );
         })

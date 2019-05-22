@@ -1,5 +1,5 @@
-import { AuthStoreModel } from './store/models/auth.model';
+import { AuthUserStoreModel } from './store/models/auth.model';
 
 export interface AppState {
-  readonly auth: AuthStoreModel;
+  readonly UserState: AuthUserStoreModel;
 }

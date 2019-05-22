@@ -4,7 +4,6 @@ import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloLink} from 'apollo-boost';
 import {AuthService} from './services/auth.service';
-import { AuthModel } from './store/models/auth.model';
 
 const uri = 'http://localhost:3000/graphql';
 

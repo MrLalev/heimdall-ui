@@ -25,7 +25,7 @@
           SINGUP
         </span>
       </div>
-      <p class="error-container" *ngIf="(authData | async)?.error"> <ion-icon name="alert"></ion-icon> {{ (authData | async)?.error }}</p>
+      <!-- <p class="error-container" *ngIf="(authData | async)?.message"> <ion-icon name="alert"></ion-icon> {{ (authData | async)?.message }}</p> -->
       <ion-slides [options]="slideOpts" #slider>
         <ion-slide>
           <div class="form-container">
@@ -56,20 +56,20 @@
         </ion-slide>
         <ion-slide>
           <div class="form-container">
-            <form>
+            <form [formGroup]="createUserForm">
               <ion-item>
-                <ion-input type="text" placeholder="First Name"></ion-input>
+                <ion-input formControlName="first_name" type="text" placeholder="First Name"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="text" placeholder="Last Name"></ion-input>
+                <ion-input formControlName="last_name" type="text" placeholder="Last Name"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="text" placeholder="Email"></ion-input>
+                <ion-input formControlName="email" type="text" placeholder="Email"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="password" placeholder="Password"></ion-input>
+                <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
               </ion-item>
-              <ion-button expand="block" class="sign-in-btn">
+              <ion-button (click)="onCreateUser()" expand="block" class="sign-in-btn">
                 Sing up
               </ion-button>
             </form>

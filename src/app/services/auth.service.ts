@@ -5,7 +5,6 @@ import { ApolloQueryResult } from 'apollo-client';
 import { BehaviorSubject } from 'rxjs';
 import { AuthModel } from '../store/models/auth.model';
 import { AppState } from '../app.state';
-import * as AuthActions from '../store/actions/auth.actions';
 import { Store } from '@ngrx/store';
 
 @Injectable({
@@ -29,7 +28,7 @@ export class AuthService {
   authorize(email, password) {
     return this.apollo.mutate({
       mutation: gql`
-        mutation {
+        mutation authorize{
           authorize(input: {email: "${email}", password: "${password}"}) {
             token,
             refreshToken,

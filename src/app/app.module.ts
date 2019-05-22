@@ -13,7 +13,7 @@ import { GraphQLModule } from './graphql.module';
 import { EffectsModule } from '@ngrx/effects';
 
 import { StoreModule } from '@ngrx/store';
-import { authReducer } from './store/reducers/auth.reducer';
+import { userReducer } from './store/reducers/user.reducer';
 import { effects } from './store/effects';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { effects } from './store/effects';
     BrowserModule,
     IonicModule.forRoot(),
     StoreModule.forRoot({
-      auth: authReducer
+      UserState: userReducer
     }),
     EffectsModule.forRoot(effects),
     AppRoutingModule,

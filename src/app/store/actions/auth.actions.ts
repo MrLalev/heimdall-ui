@@ -1,27 +1,24 @@
 import { Action } from '@ngrx/store';
+import { UserModel } from '../models/user.model';
+import { AuthUserModel } from '../models/auth.model';
 
-// TODO: RENAME ACTIONS
-export const SEND_AUTH_DATA = '[AUTH] SEND';
-export const SET_AUTH_DATA = '[AUTH] SET';
-export const SET_AUTH_ERROR = '[AUTH] ERROR';
+export const AUTH_USER = 'AUTH_USER';
+export const AUTH_USER_SUCCESS = 'AUTH_USER_SUCCESS';
+export const AUTH_USER_ERROR = 'AUTH_USER_ERROR';
 
-export class SendAuthData implements Action {
-    readonly type = SEND_AUTH_DATA;
-
-    constructor(public payload: { email: string, password: string }) {}
+export class AuthUserAction implements Action {
+    readonly type = AUTH_USER;
+    constructor(public payload: AuthUserModel) {}
 }
 
-export class SetAuthData implements Action {
-    readonly type = SET_AUTH_DATA;
-
-    // TODO: ADD USER TYPE
-    constructor(public payload: { user: any }) {}
+export class AuthUserSuccessAction implements Action {
+    readonly type = AUTH_USER_SUCCESS;
+    constructor(public payload: { user: UserModel }) {}
 }
 
-export class SetAuthError implements Action {
-    readonly type = SET_AUTH_ERROR;
-
+export class AuthUserErrorAction implements Action {
+    readonly type = AUTH_USER_ERROR;
     constructor(public payload: string) {}
 }
 
-export type Actions = SetAuthData | SetAuthError | SendAuthData;
+export type Actions = AuthUserSuccessAction | AuthUserErrorAction | AuthUserAction;

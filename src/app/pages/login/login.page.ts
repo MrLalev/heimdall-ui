@@ -1,14 +1,15 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { AuthStoreModel } from '../../store/models/auth.model';
+import { AuthUserStoreModel } from '../../store/models/auth.model';
 import { AppState } from '../../app.state';
 import * as AuthActions from '../../store/actions/auth.actions';
+import * as UserActions from '../../store/actions/user.actions';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class LoginPage implements OnInit, OnDestroy {
   @ViewChild('slider') slider: ElementRef;
-  authData: Observable<AuthStoreModel>;
+  authData: Observable<AuthUserStoreModel>;
   authDataSub: Subscription;
 
   slideOpts = {
@@ -30,6 +31,13 @@ export class LoginPage implements OnInit, OnDestroy {
     password: [''],
   });
 
+  createUserForm = this.fb.group({
+    first_name: [''],
+    last_name: [''],
+    email: [''],
+    password: [''],
+  });
+
   slides = {
     logIn: 'LOGIN',
     singUp: 'SINGUP',
@@ -37,14 +45,32 @@ export class LoginPage implements OnInit, OnDestroy {
 
   activeSlide = this.slides.logIn;
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private store: Store<AppState>, private router: Router) {
-    this.authData = this.store.pipe(select('auth'));
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private router: Router, private toastController: ToastController) {
+    this.authData = this.store.pipe(select('UserState'));
   }
 
   ngOnInit() {
-    this.authDataSub = this.authData.subscribe(s => {
+    this.authDataSub = this.authData.subscribe(async s => {
       if (s.user) {
+        this.singInForm.reset();
         this.router.navigate(['/home']);
+      }
+      if (s.message) {
+        const toast = await this.toastController.create({
+          message: s.message,
+          duration: 2000
+        });
+        toast.present();
+        this.createUserForm.reset();
+        this.activeSlide = this.slides.logIn;
+        this.slider['slidePrev']();
+      }
+      if (s.error) {
+        const toast = await this.toastController.create({
+          message: s.error,
+          duration: 2000
+        });
+        toast.present();
       }
     });
   }
@@ -57,7 +83,16 @@ export class LoginPage implements OnInit, OnDestroy {
     const email = this.singInForm.controls['email'].value;
     const password = this.singInForm.controls['password'].value;
 
-    this.store.dispatch(new AuthActions.SendAuthData({ email, password}));
+    this.store.dispatch(new AuthActions.AuthUserAction({ email, password}));
+  }
+
+  onCreateUser() {
+    const first_name = this.createUserForm.controls['first_name'].value;
+    const last_name = this.createUserForm.controls['last_name'].value;
+    const email = this.createUserForm.controls['email'].value;
+    const password = this.createUserForm.controls['password'].value;
+
+    this.store.dispatch(new UserActions.CreateUserAction({ first_name, last_name, email, password }));
   }
 
   onChangeSlide(slide) {
@@ -65,7 +100,7 @@ export class LoginPage implements OnInit, OnDestroy {
       case 'SINGUP':
           this.activeSlide = slide;
           this.slider['slideNext']();
-          this.store.dispatch(new AuthActions.SetAuthError(null));
+          this.store.dispatch(new AuthActions.AuthUserErrorAction(null));
         break;
       case 'LOGIN':
           this.activeSlide = slide;
