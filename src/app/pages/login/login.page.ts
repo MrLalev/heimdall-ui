@@ -10,6 +10,7 @@ import * as UserActions from '../../store/actions/user.actions';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
+import { getToastSettings } from '../../utils/helpers';
 
 @Component({
   selector: 'app-login',
@@ -56,20 +57,14 @@ export class LoginPage implements OnInit, OnDestroy {
         this.router.navigate(['/home']);
       }
       if (s.message) {
-        const toast = await this.toastController.create({
-          message: s.message,
-          duration: 2000
-        });
+        const toast = await this.toastController.create(getToastSettings(s.message));
         toast.present();
         this.createUserForm.reset();
         this.activeSlide = this.slides.logIn;
         this.slider['slidePrev']();
       }
       if (s.error) {
-        const toast = await this.toastController.create({
-          message: s.error,
-          duration: 2000
-        });
+        const toast = await this.toastController.create(getToastSettings(s.error));
         toast.present();
       }
     });

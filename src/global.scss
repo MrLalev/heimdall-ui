@@ -18,11 +18,16 @@
 :root {
     --ion-color-primary: #2b2b3d !important;
     --ion-color-primary-shade: #2b2b3d !important;
+    --ion-color-danger: #FCB016 !important;
+    --ion-color-danger-shade: #FCB016 !important;
     * {
         font-family: 'Lalezar-Regular';
     }
+    .toast-dialog {
+        color: #333346;
+    }
     .login-page {
-        --ion-color-success: #fff !important;
+        --ion-color-success: #FCB016 !important;
         --ion-background-color: #333346 !important;
         --background-focused: #333346 !important;
         --ion-item-background-activated: #333346 !important;
