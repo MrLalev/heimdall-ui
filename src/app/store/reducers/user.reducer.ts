@@ -10,19 +10,19 @@ const initialState: AuthUserStoreModel = {
     error: null,
 };
 
-export function userReducer(state: AuthUserStoreModel = initialState, action: AuthActions.Actions | UserActions.Actions) {
+export function userReducer(state: AuthUserStoreModel = initialState, action: AuthActions.AuthActionsType | UserActions.UserActionsType) {
     switch (action.type) {
-        case AuthActions.AUTH_USER:
+        case AuthActions.authUserAction.type:
             return { ...state, loading: true, message: null, error: null };
-        case AuthActions.AUTH_USER_SUCCESS:
-            return { ...state, ...action.payload, message: null, loading: false, error: null };
-        case AuthActions.AUTH_USER_ERROR:
+        case AuthActions.authUserSuccessAction.type:
+            return { ...state, user: action.payload, message: null, loading: false, error: null };
+        case AuthActions.authUserErrorAction.type:
             return { ...state, message: null, error: action.payload, user: null, loading: false };
-        case UserActions.CREATE_USER:
+        case UserActions.createUserAction.type:
             return { ...state, message: null, loading: true, error: null };
-        case UserActions.CREATE_USER_SUCCESS:
+        case UserActions.createUserSuccessAction.type:
             return { ...state, message: action.payload, loading: false, error: null};
-        case UserActions.CREATE_USER_ERROR:
+        case UserActions.createUserErrorAction.type:
             return { ...state, message: null, error: action.payload, loading: false};
         default:
             return state;

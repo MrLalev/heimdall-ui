@@ -78,7 +78,7 @@ export class LoginPage implements OnInit, OnDestroy {
     const email = this.singInForm.controls['email'].value;
     const password = this.singInForm.controls['password'].value;
 
-    this.store.dispatch(new AuthActions.AuthUserAction({ email, password}));
+    this.store.dispatch(AuthActions.authUserAction({ payload: { email, password } }));
   }
 
   onCreateUser() {
@@ -87,7 +87,7 @@ export class LoginPage implements OnInit, OnDestroy {
     const email = this.createUserForm.controls['email'].value;
     const password = this.createUserForm.controls['password'].value;
 
-    this.store.dispatch(new UserActions.CreateUserAction({ first_name, last_name, email, password }));
+    this.store.dispatch(UserActions.createUserAction({ payload: { first_name, last_name, email, password } }));
   }
 
   onChangeSlide(slide) {
@@ -95,7 +95,7 @@ export class LoginPage implements OnInit, OnDestroy {
       case 'SINGUP':
           this.activeSlide = slide;
           this.slider['slideNext']();
-          this.store.dispatch(new AuthActions.AuthUserErrorAction(null));
+          this.store.dispatch(AuthActions.authUserErrorAction(null));
         break;
       case 'LOGIN':
           this.activeSlide = slide;

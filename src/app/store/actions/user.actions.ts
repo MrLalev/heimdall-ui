@@ -1,23 +1,20 @@
-import { Action } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { UserModel, CreateUserModel } from '../models/user.model';
 
-export const CREATE_USER = 'CREATE_USER';
-export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
-export const CREATE_USER_ERROR = 'CREATE_USER_ERROR';
+const CREATE_USER = 'CREATE_USER';
+const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+const CREATE_USER_ERROR = 'CREATE_USER_ERROR';
 
-export class CreateUserAction implements Action {
-    readonly type = CREATE_USER;
-    constructor(public payload: CreateUserModel) {}
-}
+export const createUserAction = createAction(CREATE_USER, props<{ payload: CreateUserModel }>());
+export const createUserSuccessAction = createAction(CREATE_USER_SUCCESS, props<{ payload: string }>());
+export const createUserErrorAction = createAction(CREATE_USER_ERROR, props<{ payload: string }>());
 
-export class CreateUserSuccessAction implements Action {
-    readonly type = CREATE_USER_SUCCESS;
-    constructor(public payload: string) {}
-}
 
-export class CreateUserErrorAction implements Action {
-    readonly type = CREATE_USER_ERROR;
-    constructor(public payload: string) {}
-}
+const actions = union({
+    createUserAction,
+    createUserSuccessAction,
+    createUserErrorAction,
+});
 
-export type Actions = CreateUserSuccessAction | CreateUserErrorAction | CreateUserAction;
+export type UserActionsType = typeof actions;
+

@@ -13,15 +13,15 @@ export class UserEffects {
 
     @Effect()
     create_user$ = this.actions$.pipe(
-        ofType(UserActions.CREATE_USER),
+        ofType(UserActions.createUserAction.type),
         switchMap((action: any) => {
             return this.userService.createUser(action.payload).pipe(
                 map(result => {
                     const { first_name, last_name, email } = result.data.createUser;
-                    return new UserActions.CreateUserSuccessAction(`${first_name} ${last_name} was successfully registered`);
+                    return UserActions.createUserSuccessAction({ payload: `${first_name} ${last_name} was successfully registered` });
                 }),
                 catchError((error: any) => {
-                    return of(new UserActions.CreateUserErrorAction(error.graphQLErrors[0].message));
+                    return of(UserActions.createUserErrorAction({ payload: error.graphQLErrors[0].message }));
                 })
             );
         })
