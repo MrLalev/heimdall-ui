@@ -38,6 +38,16 @@
             --padding-bottom: 0px;
         }
 
+        .item-interactive.ion-invalid {
+            --highlight-background: #2b2b3d !important;
+            --full-highlight-height: 1px;
+        }
+
+        .item-interactive.item-has-focus {
+            --highlight-background: #FCB016 !important;
+            --full-highlight-height: calc(var(--highlight-height) * var(--show-full-highlight));
+        }
+
         ion-button {
             --ion-color-primary-shade: #2b2b3d !important;
         }

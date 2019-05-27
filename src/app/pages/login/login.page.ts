@@ -33,10 +33,10 @@ export class LoginPage implements OnInit, OnDestroy {
   });
 
   createUserForm = this.fb.group({
-    first_name: [''],
-    last_name: [''],
-    email: [''],
-    password: [''],
+    first_name: ['', [Validators.required]],
+    last_name: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
   });
 
   slides = {
@@ -82,12 +82,22 @@ export class LoginPage implements OnInit, OnDestroy {
   }
 
   onCreateUser() {
-    const first_name = this.createUserForm.controls['first_name'].value;
-    const last_name = this.createUserForm.controls['last_name'].value;
-    const email = this.createUserForm.controls['email'].value;
-    const password = this.createUserForm.controls['password'].value;
+    if (this.createUserForm.valid) {
+      const first_name = this.createUserForm.controls['first_name'].value;
+      const last_name = this.createUserForm.controls['last_name'].value;
+      const email = this.createUserForm.controls['email'].value;
+      const password = this.createUserForm.controls['password'].value;
 
-    this.store.dispatch(UserActions.createUserAction({ payload: { first_name, last_name, email, password } }));
+      this.store.dispatch(UserActions.createUserAction({ payload: { first_name, last_name, email, password } }));
+    } else {
+      if (this.createUserForm.controls['email'].errors && this.createUserForm.controls['email'].errors.email) {
+        this.store.dispatch(AuthActions.authUserErrorAction({ payload: 'Error: Invalid email address.' }));
+      } else if (this.createUserForm.controls['password'].errors && this.createUserForm.controls['password'].errors.minlength) {
+        this.store.dispatch(AuthActions.authUserErrorAction({ payload: 'Error: The password should be at least 5 characters long.' }));
+      } else {
+        this.store.dispatch(AuthActions.authUserErrorAction({ payload: 'Error: Please enter value for all of the fields.' }));
+      }
+    }
   }
 
   onChangeSlide(slide) {
