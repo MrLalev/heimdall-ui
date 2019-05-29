@@ -4,7 +4,7 @@ import { AppState } from '../../app.state';
 import * as AuthActions from '../../store/actions/auth.actions';
 import { Observable, Subscription } from 'rxjs';
 import { AuthUserStoreModel } from '../../store/models/auth.model';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { PAGE_ROUTES } from '../../utils/page-routes';
 import { MenuController } from '@ionic/angular';
 
@@ -23,7 +23,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   constructor(private store: Store<AppState>, private router: Router, private menu: MenuController) {
     this.authData = this.store.pipe(select('UserState'));
-    this.routeName = this.router.url.replace('/home/', '').replace('/', '> ').toUpperCase();
+    this.routeName = this.router.url.replace('/home/', '').toUpperCase();
     this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
   }
 
@@ -35,9 +35,9 @@ export class HomePage implements OnInit, OnDestroy {
     });
 
     this.routeSub = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.routeName = event.url.replace('/home/', '').replace('/', '> ').toUpperCase();
-        this.activeRoute = event.url.replace('/home/', '').split('/')[0];
+      if (event instanceof NavigationEnd) {
+        this.routeName = this.router.url.replace('/home/', '').toUpperCase();
+        this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
       }
     });
   }

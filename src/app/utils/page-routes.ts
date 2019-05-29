@@ -5,4 +5,8 @@ export const PAGE_ROUTES = {
     SETTINGS: 'settings',
     LOGIN: 'login',
     HOME: 'home',
+    MYPLANE: 'myplan',
+    SHARED: 'shared',
+    SCHEDULE: 'schedule',
+    GOALS: 'goals',
 };

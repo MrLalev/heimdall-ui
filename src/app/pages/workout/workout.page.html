@@ -1,5 +1,36 @@
-<ion-content id="content">
-    <ion-card class="welcome-card">
+<ion-content id="workout-content">
+    <ion-tabs>
+        <ion-tab-bar slot="top">
+          <ion-tab-button tab="myplan">
+            <ion-icon name="clipboard"></ion-icon>
+            <ion-label>MYPLAN</ion-label>
+          </ion-tab-button>
+      
+          <ion-tab-button tab="shared">
+            <ion-icon name="share"></ion-icon>
+            <ion-label>SHARED</ion-label>
+          </ion-tab-button>
+      
+          <ion-tab-button tab="schedule">
+            <ion-icon name="calendar"></ion-icon>
+            <ion-label>SCHEDULE</ion-label>
+            <ion-badge>6</ion-badge>
+          </ion-tab-button>
+    
+
+          <ion-tab-button tab="goals">
+              <ion-icon name="trophy"></ion-icon>
+              <ion-label>GOALS</ion-label>
+          </ion-tab-button>
+
+          <!-- <ion-tab-button tab="profile">
+              <ion-icon name="person"></ion-icon>
+              <ion-label>PROFILE</ion-label>
+            </ion-tab-button> -->
+        </ion-tab-bar>
+      </ion-tabs>
+
+    <!-- <ion-card class="welcome-card">
       <ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>
         <ion-card-subtitle>Get Started</ion-card-subtitle>
@@ -30,5 +61,5 @@
           <ion-card-content>
             <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
           </ion-card-content>
-        </ion-card>
+        </ion-card> -->
 </ion-content>
