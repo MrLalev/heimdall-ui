@@ -11,14 +11,18 @@
   }
 }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: calc(100vh - 60px);
+.menu-content {
+  --overflow: hidden;
 
-  .menu-icon {
-    margin-right: 10px;
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100vh - 60px);
+  
+    .menu-icon {
+      margin-right: 10px;
+    }
   }
 }
 
