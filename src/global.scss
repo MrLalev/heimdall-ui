@@ -28,6 +28,12 @@
     * {
         font-family: 'OpenSansCondensed-Light';
     }
+    .tab-selected {
+        ion-label {
+            font-family: 'OpenSansCondensed-Bold' !important;
+        }
+        color: #333346;
+    }
     .toast-dialog {
         color: #333346;
         font-family: 'OpenSansCondensed-Bold' !important;
