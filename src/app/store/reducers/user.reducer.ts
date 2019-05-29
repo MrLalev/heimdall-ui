@@ -24,6 +24,8 @@ export function userReducer(state: AuthUserStoreModel = initialState, action: Au
             return { ...state, message: action.payload, loading: false, error: null};
         case UserActions.createUserErrorAction.type:
             return { ...state, message: null, error: action.payload, loading: false};
+        case AuthActions.logOutUserActionSuccess.type:
+            return { ...state, user: null };
         default:
             return state;
     }

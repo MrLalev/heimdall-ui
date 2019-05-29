@@ -9,7 +9,6 @@ export const createUserAction = createAction(CREATE_USER, props<{ payload: Creat
 export const createUserSuccessAction = createAction(CREATE_USER_SUCCESS, props<{ payload: string }>());
 export const createUserErrorAction = createAction(CREATE_USER_ERROR, props<{ payload: string }>());
 
-
 const actions = union({
     createUserAction,
     createUserSuccessAction,

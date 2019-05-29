@@ -26,4 +26,13 @@ export class AuthEffects {
             );
         })
     );
+
+    @Effect()
+    log_out$ = this.actions$.pipe(
+        ofType(AuthActions.logOutUserAction.type),
+        switchMap(() => {
+            AuthService.setAuthTokenData({ token: null, refreshToken: null });
+            return of(AuthActions.logOutUserActionSuccess());
+        })
+    );
 }
