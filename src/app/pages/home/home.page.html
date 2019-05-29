@@ -1,4 +1,4 @@
-<ion-menu side="start" menuId="first" content-id="content">
+<ion-menu side="start" menuId="main" content-id="content">
   <ion-header>
     <ion-toolbar *ngIf="(authData | async)?.user">
       <div class="avatar-wrapper">
@@ -20,20 +20,20 @@
   <ion-content class="menu-content">
     <div class="menu">
       <ion-list>
-        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'workout' }">
-          <ion-icon [ngClass]="{'active-icon': activeRoute === 'workout' }" name="fitness" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === PAGE_ROUTES.WORKOUT }" (click)="handleRouteChange(PAGE_ROUTES.WORKOUT)">
+          <ion-icon [ngClass]="{'active-icon': activeRoute === PAGE_ROUTES.WORKOUT }" name="fitness" class="menu-icon"></ion-icon>
           WORKOUT
         </ion-item>
-        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'feed'}"> 
-            <ion-icon [ngClass]="{'active-icon': activeRoute === 'feed' }" name="paper" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === PAGE_ROUTES.FEED}" (click)="handleRouteChange(PAGE_ROUTES.FEED)"> 
+            <ion-icon [ngClass]="{'active-icon': activeRoute === PAGE_ROUTES.FEED }" name="paper" class="menu-icon"></ion-icon>
             FEED
         </ion-item>
-        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'activity'}">
-          <ion-icon [ngClass]="{'active-icon': activeRoute === 'activity' }" name="stats" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === PAGE_ROUTES.ACTIVITY}" (click)="handleRouteChange(PAGE_ROUTES.ACTIVITY)">
+          <ion-icon [ngClass]="{'active-icon': activeRoute === PAGE_ROUTES.ACTIVITY }" name="stats" class="menu-icon"></ion-icon>
           ACTIVITY
         </ion-item>
-        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'settings'}">
-          <ion-icon [ngClass]="{'active-icon': activeRoute === 'settings' }" name="settings" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === PAGE_ROUTES.SETTINGS}" (click)="handleRouteChange(PAGE_ROUTES.SETTINGS)">
+          <ion-icon [ngClass]="{'active-icon': activeRoute === PAGE_ROUTES.SETTINGS }" name="settings" class="menu-icon"></ion-icon>
           SETTINGS
         </ion-item>
       </ion-list>

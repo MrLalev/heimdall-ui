@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { getToastSettings } from '../../utils/helpers';
+import { PAGE_ROUTES } from '../../utils/page-routes';
 
 @Component({
   selector: 'app-login',
@@ -54,7 +55,7 @@ export class LoginPage implements OnInit, OnDestroy {
     this.authDataSub = this.authData.subscribe(async s => {
       if (s.user) {
         this.singInForm.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate([`/${PAGE_ROUTES.HOME}`]);
       }
       if (s.message) {
         const toast = await this.toastController.create(getToastSettings(s.message));
