@@ -15,19 +15,19 @@ const routes: Routes = [
           },
           {
             path: PAGE_ROUTES.MYPLANE,
-            loadChildren: '../myplan/myplan.module#MyplanPageModule',
+            loadChildren: '../tabs/workout-tabs/myplan/myplan.module#MyplanPageModule',
           },
           {
             path: PAGE_ROUTES.SHARED,
-            loadChildren: '../shared/shared.module#SharedPageModule',
+            loadChildren: '../tabs/workout-tabs/shared-trainings/shared-trainings.module#SharedTrainingsPageModule',
           },
           {
             path: PAGE_ROUTES.SCHEDULE,
-            loadChildren: '../schedule/schedule.module#SchedulePageModule',
+            loadChildren: '../tabs/workout-tabs/schedule/schedule.module#SchedulePageModule',
           },
           {
             path: PAGE_ROUTES.GOALS,
-            loadChildren: '../goals/goals.module#GoalsPageModule',
+            loadChildren: '../tabs/workout-tabs/goals/goals.module#GoalsPageModule',
           },
         ]
     },

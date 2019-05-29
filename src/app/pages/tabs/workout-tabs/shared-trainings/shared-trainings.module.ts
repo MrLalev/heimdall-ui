@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SharedPage } from './shared.page';
+import { SharedTrainingsPage } from './shared-trainings.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SharedPage
+    component: SharedTrainingsPage
   }
 ];
 
@@ -20,6 +20,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SharedPage]
+  declarations: [SharedTrainingsPage]
 })
-export class SharedPageModule {}
+export class SharedTrainingsPageModule {}
