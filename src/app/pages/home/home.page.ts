@@ -15,11 +15,13 @@ export class HomePage implements OnInit, OnDestroy {
   authData: Observable<AuthUserStoreModel>;
   authDataSub: Subscription;
   routeSub: Subscription;
-  pageName: string;
+  routeName: string;
+  activeRoute: string;
 
   constructor(private store: Store<AppState>, private router: Router) {
     this.authData = this.store.pipe(select('UserState'));
-    this.pageName = this.router.url.replace('/home/', '').replace('/', '> ').toUpperCase();
+    this.routeName = this.router.url.replace('/home/', '').replace('/', '> ').toUpperCase();
+    this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
   }
 
   ngOnInit(): void {

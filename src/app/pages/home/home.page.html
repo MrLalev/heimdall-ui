@@ -20,20 +20,20 @@
   <ion-content class="menu-content">
     <div class="menu">
       <ion-list>
-        <ion-item>
-          <ion-icon name="fitness" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'workout' }">
+          <ion-icon [ngClass]="{'active-icon': activeRoute === 'workout' }" name="fitness" class="menu-icon"></ion-icon>
           WORKOUT
         </ion-item>
-        <ion-item>
-          <ion-icon name="paper" class="menu-icon"></ion-icon>
-          FEED
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'feed'}"> 
+            <ion-icon [ngClass]="{'active-icon': activeRoute === 'feed' }" name="paper" class="menu-icon"></ion-icon>
+            FEED
         </ion-item>
-        <ion-item>
-          <ion-icon name="stats" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'activity'}">
+          <ion-icon [ngClass]="{'active-icon': activeRoute === 'activity' }" name="stats" class="menu-icon"></ion-icon>
           ACTIVITY
         </ion-item>
-        <ion-item>
-          <ion-icon name="settings" class="menu-icon"></ion-icon>
+        <ion-item [ngClass]="{'active-menu-item': activeRoute === 'settings'}">
+          <ion-icon [ngClass]="{'active-icon': activeRoute === 'settings' }" name="settings" class="menu-icon"></ion-icon>
           SETTINGS
         </ion-item>
       </ion-list>
@@ -53,7 +53,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="page-title">
-      {{ pageName }}
+      {{ routeName }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
