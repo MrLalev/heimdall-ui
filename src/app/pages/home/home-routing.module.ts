@@ -9,12 +9,12 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'trainings',
+            redirectTo: 'workout',
             pathMatch: 'full'
           },
           {
-            path: 'trainings',
-            loadChildren: '../trainings/trainings.module#TrainingsPageModule',
+            path: 'workout',
+            loadChildren: '../workout/workout.module#WorkoutPageModule',
           }
         ]
     },

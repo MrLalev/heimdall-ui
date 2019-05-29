@@ -1,19 +1,48 @@
-
-
 <ion-menu side="start" menuId="first" content-id="content">
   <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Start Menu</ion-title>
+    <ion-toolbar>
+      <div class="avatar-wrapper">
+        <ngx-avatar
+          name="Haithem Mosbahi"
+          size="45"
+          round="true"
+          bgColor="#FCB016"
+          fgColor="#333346"
+        ></ngx-avatar>
+        <div class="avatar-info">
+          <p>Haithem Mosbahi</p>
+          <p>Deuchland</p>
+        </div>
+      </div>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-    </ion-list>
+    <div class="menu">
+      <ion-list>
+        <ion-item>
+          <ion-icon name="fitness" class="menu-icon"></ion-icon>
+          WORKOUT
+        </ion-item>
+        <ion-item>
+          <ion-icon name="paper" class="menu-icon"></ion-icon>
+          FEED
+        </ion-item>
+        <ion-item>
+          <ion-icon name="stats" class="menu-icon"></ion-icon>
+          ACTIVITY
+        </ion-item>
+        <ion-item>
+          <ion-icon name="settings" class="menu-icon"></ion-icon>
+          SETTINGS
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="power" class="menu-icon"></ion-icon>
+          LOGOUT
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-menu>
 
@@ -22,12 +51,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
+    <ion-title class="page-title">
+      WORKOUT
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content id="content">
-    <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet></ion-router-outlet>
 </ion-content>

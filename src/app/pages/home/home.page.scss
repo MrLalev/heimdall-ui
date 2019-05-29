@@ -1,0 +1,27 @@
+.avatar-wrapper {
+  display: flex;
+  padding: 8px;
+
+  .avatar-info {
+    margin-left: 7px;
+  }
+
+  p {
+    margin: 0px; 
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 60px);
+
+  .menu-icon {
+    margin-right: 10px;
+  }
+}
+
+.page-title {
+  font-weight: 900;
+}

@@ -11,8 +11,13 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 @font-face {
-    font-family: "Lalezar-Regular";
-    src: url("./assets/font/Lalezar-Regular.ttf");
+    font-family: "OpenSansCondensed-Light";
+    src: url("./assets/font/OpenSansCondensed-Light.ttf");
+}
+
+@font-face {
+    font-family: "OpenSansCondensed-Bold";
+    src: url("./assets/font/OpenSansCondensed-Bold.ttf");
 }
 
 :root {
@@ -21,12 +26,15 @@
     --ion-color-danger: #FCB016 !important;
     --ion-color-danger-shade: #FCB016 !important;
     * {
-        font-family: 'Lalezar-Regular';
+        font-family: 'OpenSansCondensed-Light';
     }
     .toast-dialog {
         color: #333346;
     }
     .login-page {
+        * {
+            font-family: 'OpenSansCondensed-Bold' !important;
+        }
         --ion-color-success: #FCB016 !important;
         --ion-background-color: #333346 !important;
         --background-focused: #333346 !important;
