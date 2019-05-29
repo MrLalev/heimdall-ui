@@ -14,9 +14,12 @@ import { Router } from '@angular/router';
 export class HomePage implements OnInit, OnDestroy {
   authData: Observable<AuthUserStoreModel>;
   authDataSub: Subscription;
+  routeSub: Subscription;
+  pageName: string;
 
   constructor(private store: Store<AppState>, private router: Router) {
     this.authData = this.store.pipe(select('UserState'));
+    this.pageName = this.router.url.replace('/home/', '').replace('/', '> ').toUpperCase();
   }
 
   ngOnInit(): void {
@@ -25,6 +28,8 @@ export class HomePage implements OnInit, OnDestroy {
         this.router.navigate(['/login']);
       }
     });
+
+    this.routeSub = this.router.events.subscribe((url) => console.log(url));
   }
 
   handleLogOut() {
@@ -33,5 +38,6 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authDataSub.unsubscribe();
+    this.routeSub.unsubscribe();
   }
 }
