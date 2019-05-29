@@ -35,7 +35,17 @@ export class AuthService {
             user {
               _id,
               first_name,
-              last_name
+              last_name,
+              personal_data {
+                weight,
+                gender,
+                height,
+                birthday,
+                country,
+                description,
+                metric_type
+              },
+              email
             }
           }
         }

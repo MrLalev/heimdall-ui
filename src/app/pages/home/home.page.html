@@ -1,17 +1,18 @@
 <ion-menu side="start" menuId="first" content-id="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar *ngIf="(authData | async)?.user">
       <div class="avatar-wrapper">
         <ngx-avatar
-          name="Haithem Mosbahi"
+          name=" {{ (authData | async)?.user.first_name }} {{ (authData | async)?.user.last_name }}"
           size="45"
           round="true"
           bgColor="#FCB016"
           fgColor="#333346"
         ></ngx-avatar>
         <div class="avatar-info">
-          <p>Haithem Mosbahi</p>
-          <p>Deuchland</p>
+          <p>{{ (authData | async)?.user.first_name }} {{ (authData | async)?.user.last_name }}</p>
+          <p *ngIf="(authData | async)?.user.personal_data?.country">{{ (authData | async)?.user.personal_data.country }}</p>
+          <p *ngIf="!(authData | async)?.user.personal_data?.country">{{ (authData | async)?.user.email }}</p>
         </div>
       </div>
     </ion-toolbar>

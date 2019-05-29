@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import * as AuthActions from '../../store/actions/auth.actions';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnDestroy {
   authData: Observable<AuthUserStoreModel>;
   authDataSub: Subscription;
 
@@ -29,5 +29,9 @@ export class HomePage implements OnInit {
 
   handleLogOut() {
     this.store.dispatch(AuthActions.logOutUserAction());
+  }
+
+  ngOnDestroy() {
+    this.authDataSub.unsubscribe();
   }
 }
