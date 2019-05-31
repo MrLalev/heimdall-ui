@@ -22,7 +22,7 @@ export class HomePage implements OnInit, OnDestroy {
   activeRoute: string;
 
   constructor(private store: Store<AppState>, private router: Router, private menu: MenuController) {
-    this.authData = this.store.pipe(select('UserState'));
+    this.authData = this.store.pipe(select('AuthState'));
     this.routeName = this.router.url.replace('/home/', '').toUpperCase();
     this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
   }

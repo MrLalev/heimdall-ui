@@ -10,7 +10,7 @@ const initialState: AuthUserStoreModel = {
     error: null,
 };
 
-export function userReducer(state: AuthUserStoreModel = initialState, action: AuthActions.AuthActionsType | UserActions.UserActionsType) {
+export function authReducer(state: AuthUserStoreModel = initialState, action: AuthActions.AuthActionsType | UserActions.UserActionsType) {
     switch (action.type) {
         case AuthActions.authUserAction.type:
             return { ...state, loading: true, message: null, error: null };

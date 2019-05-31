@@ -11,21 +11,23 @@ export class UserService {
 
   constructor(private apollo: Apollo) { }
 
-  getAllUsers() {
+  fetchUsers(page, perPage, where) {
     this.apollo.watchQuery({
       query: gql`
-        query allUsers {
-          getAllUsers {
+        query fetchUsers {
+          getAllUsers(where: ${where ? where : {}}, restrict: { limit: ${perPage}, skip: ${perPage * page}}) {
             _id,
-            email,
             first_name,
-            last_name
+            last_name,
+            email,
+            followers_count,
+            following_count,
+            personal_data {
+              country
+            }
           }
         }
       `,
-    })
-    .valueChanges.subscribe((result: ApolloQueryResult<any> ) => {
-      console.log(result);
     });
   }
 

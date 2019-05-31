@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GraphQLModule } from './graphql.module';
 
-import { userReducer } from './store/reducers/user.reducer';
+import { authReducer } from './store/reducers/auth.reducer';
 import { effects } from './store/effects';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { effects } from './store/effects';
     BrowserModule,
     IonicModule.forRoot(),
     StoreModule.forRoot({
-      UserState: userReducer
+      AuthState: authReducer
     }),
     EffectsModule.forRoot(effects),
     AppRoutingModule,

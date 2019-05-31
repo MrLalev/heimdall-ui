@@ -48,7 +48,7 @@ export class LoginPage implements OnInit, OnDestroy {
   activeSlide = this.slides.logIn;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>, private router: Router, private toastController: ToastController) {
-    this.authData = this.store.pipe(select('UserState'));
+    this.authData = this.store.pipe(select('AuthState'));
   }
 
   ngOnInit() {
