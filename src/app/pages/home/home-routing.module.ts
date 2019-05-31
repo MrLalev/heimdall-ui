@@ -28,6 +28,10 @@ const routes: Routes = [
           {
             path: PAGE_ROUTES.SETTINGS,
             loadChildren: '../settings/settings.module#SettingsPageModule',
+          },
+          {
+            path: PAGE_ROUTES.SOCIAL,
+            loadChildren: '../social/social.module#SocialPageModule',
           }
         ]
     },

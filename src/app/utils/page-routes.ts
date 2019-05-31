@@ -9,4 +9,5 @@ export const PAGE_ROUTES = {
     SHARED: 'shared',
     SCHEDULE: 'schedule',
     GOALS: 'goals',
+    SOCIAL: 'social',
 };
