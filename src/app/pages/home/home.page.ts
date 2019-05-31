@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import * as AuthActions from '../../store/actions/auth.actions';
 import { Observable, Subscription } from 'rxjs';
-import { AuthUserStoreModel } from '../../store/models/auth.model';
+import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { PAGE_ROUTES } from '../../utils/page-routes';
 import { MenuController } from '@ionic/angular';

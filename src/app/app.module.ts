@@ -17,6 +17,7 @@ import { GraphQLModule } from './graphql.module';
 
 import { authReducer } from './store/reducers/auth.reducer';
 import { effects } from './store/effects';
+import { socialReducer } from './store/reducers/social.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { effects } from './store/effects';
     BrowserModule,
     IonicModule.forRoot(),
     StoreModule.forRoot({
-      AuthState: authReducer
+      AuthState: authReducer,
+      SocialState: socialReducer,
     }),
     EffectsModule.forRoot(effects),
     AppRoutingModule,

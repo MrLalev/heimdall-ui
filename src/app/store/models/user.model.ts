@@ -32,3 +32,9 @@ export interface CreateUserModel {
     email: string;
     password: string;
 }
+
+export interface FetchUsersModel {
+    page: number;
+    perPage: number;
+    where: Object;
+}

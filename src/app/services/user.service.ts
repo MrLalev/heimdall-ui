@@ -12,10 +12,10 @@ export class UserService {
   constructor(private apollo: Apollo) { }
 
   fetchUsers(page, perPage, where) {
-    this.apollo.watchQuery({
+    return this.apollo.watchQuery({
       query: gql`
         query fetchUsers {
-          getAllUsers(where: ${where ? where : {}}, restrict: { limit: ${perPage}, skip: ${perPage * page}}) {
+          getUsers(where: {}, restrict: { limit: ${perPage}, skip: ${perPage * page}}) {
             _id,
             first_name,
             last_name,
@@ -28,7 +28,7 @@ export class UserService {
           }
         }
       `,
-    });
+    }).valueChanges;
   }
 
   createUser(user: CreateUserModel) {

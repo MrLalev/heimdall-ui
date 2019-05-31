@@ -26,4 +26,21 @@ export class UserEffects {
             );
         })
     );
+
+    @Effect()
+    fetch_users$ = this.actions$.pipe(
+        ofType(UserActions.fetchUsersAction.type),
+        switchMap((action: any) => {
+            const { page, perPage, where} = action.payload;
+            return this.userService.fetchUsers(page, perPage, where).pipe(
+                map((result: any) => {
+                    console.log(result.data.getUsers);
+                    return UserActions.fetchUsersSuccessAction({ payload: result.data.getUsers });
+                }),
+                catchError((error: any) => {
+                    return of(UserActions.fetchUsersErrorAction({ payload: error.graphQLErrors[0].message }));
+                })
+            );
+        })
+    );
 }

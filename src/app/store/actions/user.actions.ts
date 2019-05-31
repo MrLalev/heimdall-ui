@@ -1,5 +1,5 @@
 import { createAction, props, union } from '@ngrx/store';
-import { UserModel, CreateUserModel } from '../models/user.model';
+import { CreateUserModel, FetchUsersModel, UserModel } from '../models/user.model';
 
 const CREATE_USER = 'CREATE_USER';
 const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
@@ -13,8 +13,8 @@ export const createUserAction = createAction(CREATE_USER, props<{ payload: Creat
 export const createUserSuccessAction = createAction(CREATE_USER_SUCCESS, props<{ payload: string }>());
 export const createUserErrorAction = createAction(CREATE_USER_ERROR, props<{ payload: string }>());
 
-export const fetchUsersAction = createAction(FETCH_USERS, props<{ payload: CreateUserModel }>());
-export const fetchUsersSuccessAction = createAction(FETCH_USERS_SUCCESS, props<{ payload: string }>());
+export const fetchUsersAction = createAction(FETCH_USERS, props<{ payload: FetchUsersModel }>());
+export const fetchUsersSuccessAction = createAction(FETCH_USERS_SUCCESS, props<{ payload: Array<UserModel> }>());
 export const fetchUsersErrorAction = createAction(FETCH_USERS_ERROR, props<{ payload: string }>());
 
 const actions = union({

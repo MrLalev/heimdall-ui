@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { AuthUserStoreModel } from '../../store/models/auth.model';
+import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { AppState } from '../../app.state';
 import * as AuthActions from '../../store/actions/auth.actions';
 import * as UserActions from '../../store/actions/user.actions';
