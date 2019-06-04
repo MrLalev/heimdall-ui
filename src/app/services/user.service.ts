@@ -25,7 +25,8 @@ export class UserService {
             followers_count,
             following_count,
             personal_data {
-              country
+              country,
+              description
             }
           }
         }
@@ -49,7 +50,8 @@ export class UserService {
             followers_count,
             following_count,
             personal_data {
-              country
+              country,
+              description
             }
           }
         }

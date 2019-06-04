@@ -7,4 +7,11 @@ app-user-card {
     ion-refresher { 
         z-index: 1;
     }
+    // ion-list {
+    //     background: #f4f6f8;
+    //     padding: 7px;
+    // }
+    ion-infinite-scroll-content {
+        background: #f4f6f8;
+    }
 }

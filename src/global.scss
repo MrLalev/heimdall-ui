@@ -28,6 +28,15 @@
     * {
         font-family: 'OpenSansCondensed-Light';
     }
+    app-social {
+        background: #f4f6f8;
+    }
+    ion-content {
+        --background: var(--ion-background-color, transparent);;
+    }
+    ion-card {
+        background: #fff;
+    }
     .tab-selected {
         ion-label {
             font-family: 'OpenSansCondensed-Bold' !important;

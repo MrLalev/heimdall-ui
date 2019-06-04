@@ -1,12 +1,10 @@
 <ion-content id="users-list-content">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
+    <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-list>
-    <ion-item *ngFor="let user of users">
-      <app-user-card [user]="user"></app-user-card>
-    </ion-item>
-  </ion-list>
+
+  <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
+
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"

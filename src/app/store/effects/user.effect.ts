@@ -66,7 +66,6 @@ export class UserEffects {
             const { page, perPage, where} = action.payload;
             return this.userService.refreshUsers(page, perPage, where).pipe(
                 map((result: any) => {
-                    console.log(result);
                     return UserActions.refetchUsersSuccessAction({ payload: result.data.refreshUsers });
                 }),
                 catchError((error: any) => {

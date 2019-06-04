@@ -1,41 +1,56 @@
-<div class="avatar-wrapper">
-  <ngx-avatar
-    name=" {{ user.first_name }} {{
-      user.last_name
-    }}"
-    size="45"
-    round="true"
-    bgColor="#FCB016"
-    fgColor="#333346"
-  ></ngx-avatar>
-  <div class="avatar-info">
-    <p>
-      {{ user.first_name }}
-      {{ user.last_name }}
-    </p>
-    <p *ngIf="user.personal_data?.country">
-      {{ user.personal_data.country }}
-    </p>
-    <p *ngIf="!user.personal_data?.country">
-      {{ user.email }}
-    </p>
-  </div>
-  <div class="follow-info">
-      <div>
-            <p>
-                {{ user.followers_count }}
-            </p>
-            <p>
-                Followers
-            </p>
-      </div>
-      <div>
-            <p>
-                {{ user.following_count }}
-            </p>
-            <p>
-                Following
-            </p>
-      </div>
-  </div>
-</div>
+
+<ion-card class="user-card">
+    <ion-card-header>
+        <div class="avatar-wrapper">
+                <ngx-avatar
+                  name=" {{ user.first_name }} {{
+                    user.last_name
+                  }}"
+                  size="45"
+                  round="true"
+                  bgColor="#FCB016"
+                  fgColor="#333346"
+                ></ngx-avatar>
+                <div class="avatar-info">
+                  <ion-card-title>
+                    {{ user.first_name }}
+                    {{ user.last_name }}
+                  </ion-card-title>
+                  <ion-card-subtitle *ngIf="user.personal_data?.country">
+                    {{ user.personal_data.country }}
+                  </ion-card-subtitle>
+                  <ion-card-subtitle *ngIf="!user.personal_data?.country">
+                    {{ user.email }}
+                  </ion-card-subtitle>
+                </div>
+                <div class="follow-info">
+                    <div>
+                          <p>
+                              {{ user.followers_count }}
+                          </p>
+                          <p>
+                              Followers
+                          </p>
+                    </div>
+                    <div>
+                          <p>
+                              {{ user.following_count }}
+                          </p>
+                          <p>
+                              Following
+                          </p>
+                    </div>
+                </div>
+              </div>
+    </ion-card-header>
+    <ion-card-content>
+        <p *ngIf="user.personal_data?.description">
+            {{ user.personal_data?.description }}
+        </p>
+        <p *ngIf="!user.personal_data?.description">
+            Now that your app has been created, you'll want to start building out
+            features and components. Check out some of the resources below for next
+            steps.
+        </p>
+    </ion-card-content>
+</ion-card>
