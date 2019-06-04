@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { UserModel } from '../../store/models/user.model';
 
 @Component({
@@ -6,23 +6,26 @@ import { UserModel } from '../../store/models/user.model';
   templateUrl: 'users-list.component.html',
   styleUrls: ['users-list.component.scss'],
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnChanges {
   @Input() users: Array<UserModel>;
+  @Output() fetchData: EventEmitter<any> = new EventEmitter();
+  loadingEvent: any = null;
 
   constructor() {}
 
   ngOnInit(): void {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.loadingEvent) {
+      this.loadingEvent.target.complete();
+      this.loadingEvent = null;
+    }
+  }
+
   loadData(event) {
     setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      // if (data.length == 1000) {
-      //   event.target.disabled = true;
-      // }
+      this.fetchData.emit(event);
+      this.loadingEvent = event;
     }, 500);
   }
 }
