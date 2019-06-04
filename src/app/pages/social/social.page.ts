@@ -20,24 +20,9 @@ export class SocialPage implements OnInit {
   }
 
   ngOnInit(): void {
-    const socialData = getStateSnapshot(this.store, FROM_STORE.SOCIAL_DATA);
-    if (socialData.users.length === 0) {
+    // const socialData = getStateSnapshot(this.store, FROM_STORE.SOCIAL_DATA);
+    // if (socialData.users.length === 0) {
       this.store.dispatch(UserActions.fetchUsersAction({ payload: { page : 0, perPage: 10, where: {}}}));
-    }
-
-    this.socialData.subscribe(s => console.log(s.users));
-  }
-
-  loadData(event) {
-    setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      // if (data.length == 1000) {
-      //   event.target.disabled = true;
-      // }
-    }, 500);
+    // }
   }
 }

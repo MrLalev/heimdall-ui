@@ -1,14 +1,4 @@
 <ion-searchbar placeholder="Filter Users"></ion-searchbar>
 <ion-content id="social-content">
-    <ion-list>
-        <ion-item *ngFor="let user of (socialData | async)?.users">
-            <app-user-card [user]="user"></app-user-card>
-        </ion-item>
-    </ion-list>
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data...">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    <app-users-list [users]="(socialData | async)?.users"></app-users-list>
 </ion-content>

@@ -7,6 +7,7 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
 import { AvatarModule } from 'ngx-avatar';
 
 import { SocialPage } from './social.page';
+import { UsersListComponent } from '../../components/users-list/users-list.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   ],
   declarations: [
     SocialPage,
-    UserCardComponent
+    UserCardComponent,
+    UsersListComponent
   ]
 })
 export class SocialPageModule {}
