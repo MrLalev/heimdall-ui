@@ -1,4 +1,4 @@
 <ion-searchbar placeholder="Filter Users" debounce="500" value="{{ (socialData | async)?.where }}" (ionChange)="onSearchChange($event)"></ion-searchbar>
 <ion-content id="social-content">
-    <app-users-list [users]="(socialData | async)?.users" (fetchData)="onFetchUsers($event)"></app-users-list>
+    <app-users-list [users]="(socialData | async)?.users" (fetchData)="onFetchUsers($event)" (refreshData)="onRefreshUsers($event)"></app-users-list>
 </ion-content>

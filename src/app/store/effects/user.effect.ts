@@ -44,13 +44,30 @@ export class UserEffects {
     );
 
     @Effect()
-    refetch_users$ = this.actions$.pipe(
-        ofType(UserActions.refetchUsersAction.type),
+    search_users$ = this.actions$.pipe(
+        ofType(UserActions.searchUsersAction.type),
         switchMap((action: any) => {
             const { page, perPage, where} = action.payload;
             return this.userService.fetchUsers(page, perPage, where).pipe(
                 map((result: any) => {
                     return UserActions.refetchUsersSuccessAction({ payload: result.data.getUsers });
+                }),
+                catchError((error: any) => {
+                    return of(UserActions.refetchUsersErrorAction({ payload: error.graphQLErrors[0].message }));
+                })
+            );
+        })
+    );
+
+    @Effect()
+    refresh_users$ = this.actions$.pipe(
+        ofType(UserActions.refetchUsersAction.type),
+        switchMap((action: any) => {
+            const { page, perPage, where} = action.payload;
+            return this.userService.refreshUsers(page, perPage, where).pipe(
+                map((result: any) => {
+                    console.log(result);
+                    return UserActions.refetchUsersSuccessAction({ payload: result.data.refreshUsers });
                 }),
                 catchError((error: any) => {
                     return of(UserActions.refetchUsersErrorAction({ payload: error.graphQLErrors[0].message }));

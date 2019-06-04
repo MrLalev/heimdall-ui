@@ -9,7 +9,9 @@ import { UserModel } from '../../store/models/user.model';
 export class UsersListComponent implements OnInit, OnChanges {
   @Input() users: Array<UserModel>;
   @Output() fetchData: EventEmitter<any> = new EventEmitter();
+  @Output() refreshData: EventEmitter<any> = new EventEmitter();
   loadingEvent: any = null;
+  refreshEvent: any = null;
 
   constructor() {}
 
@@ -20,12 +22,24 @@ export class UsersListComponent implements OnInit, OnChanges {
       this.loadingEvent.target.complete();
       this.loadingEvent = null;
     }
+
+    if (this.refreshEvent) {
+      this.refreshEvent.target.complete();
+      this.refreshEvent = null;
+    }
   }
 
   loadData(event) {
     setTimeout(() => {
       this.fetchData.emit(event);
       this.loadingEvent = event;
+    }, 500);
+  }
+
+  doRefresh(event) {
+    setTimeout(() => {
+      this.refreshData.emit(event);
+      this.refreshEvent = event;
     }, 500);
   }
 }

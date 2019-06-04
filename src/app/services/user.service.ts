@@ -33,7 +33,32 @@ export class UserService {
       variables: {
         where: parseSearchFilter(where, SEARCH_FIELDS.USERS),
         restrict: { limit: perPage, skip: perPage * page },
-      }
+      },
+    }).valueChanges;
+  }
+
+  refreshUsers(page, perPage, where) {
+    return this.apollo.watchQuery({
+      query: gql`
+        query refreshUsers($where: JSONObject!, $restrict: JSONObject!) {
+          refreshUsers(where: $where, restrict: $restrict) {
+            _id,
+            first_name,
+            last_name,
+            email,
+            followers_count,
+            following_count,
+            personal_data {
+              country
+            }
+          }
+        }
+      `,
+      variables: {
+        where: parseSearchFilter(where, SEARCH_FIELDS.USERS),
+        restrict: { limit: perPage, skip: perPage * page },
+      },
+      fetchPolicy: 'network-only'
     }).valueChanges;
   }
 

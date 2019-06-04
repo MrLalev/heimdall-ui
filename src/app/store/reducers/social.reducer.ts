@@ -19,6 +19,8 @@ export function socialReducer(state: SocialStoreModel = initialState, action: Us
             return { ...state, users: [ ...state.users, ...action.payload ], loading: false};
         case UserActions.fetchUsersErrorAction.type:
             return { ...state, users: [], error: action.payload, loading: false};
+        case UserActions.searchUsersAction.type:
+            return { ...state, ...action.payload, loading: true, error: null, users: [] };
         case UserActions.refetchUsersAction.type:
             return { ...state, ...action.payload, loading: true, error: null, users: [] };
         case UserActions.refetchUsersSuccessAction.type:

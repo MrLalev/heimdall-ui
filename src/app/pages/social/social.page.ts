@@ -35,7 +35,12 @@ export class SocialPage implements OnInit {
   onSearchChange(event) {
     const where = event.detail.value;
     const socialData = getStateSnapshot(this.store, FROM_STORE.SOCIAL_DATA);
-    this.store.dispatch(UserActions.refetchUsersAction({ payload: { page : 0, perPage: socialData.perPage, where }}));
+    this.store.dispatch(UserActions.searchUsersAction({ payload: { page : 0, perPage: socialData.perPage, where }}));
   }
 
+  onRefreshUsers(event) {
+    const socialData = getStateSnapshot(this.store, FROM_STORE.SOCIAL_DATA);
+    // tslint:disable-next-line:max-line-length
+    this.store.dispatch(UserActions.refetchUsersAction({ payload: { page : 0, perPage: socialData.perPage, where: socialData.where}}));
+  }
 }
