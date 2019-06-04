@@ -3,7 +3,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ApolloQueryResult } from 'apollo-client';
 import { CreateUserModel } from '../store/models/user.model';
-import { parseUserSearchFilter } from '../utils/helpers';
+import { parseSearchFilter } from '../utils/helpers';
+import { SEARCH_FIELDS } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class UserService {
         }
       `,
       variables: {
-        where: parseUserSearchFilter(where),
+        where: parseSearchFilter(where, SEARCH_FIELDS.USERS),
         restrict: { limit: perPage, skip: perPage * page },
       }
     }).valueChanges;

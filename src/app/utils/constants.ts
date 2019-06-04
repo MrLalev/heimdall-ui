@@ -16,3 +16,7 @@ export const FROM_STORE = {
     AUTH_DATA: 'AuthState',
     SOCIAL_DATA: 'SocialState',
 };
+
+export const SEARCH_FIELDS = {
+    USERS: ['first_name', 'last_name', 'email'],
+};

@@ -5,7 +5,7 @@ import { SocialStoreModel } from '../../store/models/sore.model';
 import { Observable } from 'rxjs';
 import { getStateSnapshot } from '../../store/selectors/base-selector';
 import * as UserActions from '../../store/actions/user.actions';
-import { FROM_STORE } from '../../utils/page-routes';
+import { FROM_STORE } from '../../utils/constants';
 
 @Component({
   selector: 'app-social',

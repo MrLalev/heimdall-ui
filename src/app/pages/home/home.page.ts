@@ -5,7 +5,7 @@ import * as AuthActions from '../../store/actions/auth.actions';
 import { Observable, Subscription } from 'rxjs';
 import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { PAGE_ROUTES, FROM_STORE } from '../../utils/page-routes';
+import { PAGE_ROUTES, FROM_STORE } from '../../utils/constants';
 import { MenuController } from '@ionic/angular';
 
 @Component({

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { getStateSnapshot } from '../store/selectors/base-selector';
-import { FROM_STORE } from '../utils/page-routes';
+import { FROM_STORE } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root'

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { getToastSettings } from '../../utils/helpers';
-import { PAGE_ROUTES, FROM_STORE } from '../../utils/page-routes';
+import { PAGE_ROUTES, FROM_STORE } from '../../utils/constants';
 
 @Component({
   selector: 'app-login',

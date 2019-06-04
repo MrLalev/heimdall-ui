@@ -8,8 +8,7 @@ export const getToastSettings = (message) => {
     };
 };
 
-export const parseUserSearchFilter = (filter) => {
-    const searchFields = ['first_name', 'last_name', 'email'];
+export const parseSearchFilter = (filter, searchFields) => {
     const filterKeyWords = filter.split(' ');
     const where = {};
 
