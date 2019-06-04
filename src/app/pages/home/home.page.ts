@@ -61,7 +61,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   onProfileSelect() {
     const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
-    this.router.navigate([`/${PAGE_ROUTES.HOME}/${PAGE_ROUTES.PROFILE}`, authState.user._id]);
+    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, authState.user._id]);
     this.menu.close('main');
   }
 }
