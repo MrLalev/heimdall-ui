@@ -19,12 +19,9 @@ export class ProfilePage implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
-    const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
     this.routeSub = this.route.params.subscribe(params => {
-        if (authState.user._id === params.id) {
-          this.isPermitted = true;
-        }
         this.previousRoute = history.state.previousRoute;
+        this.isPermitted = history.state.isPermitted ? history.state.isPermitted : false;
     });
   }
 
