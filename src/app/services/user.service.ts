@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { ApolloQueryResult } from 'apollo-client';
 import { CreateUserModel } from '../store/models/user.model';
+import { parseUserSearchFilter } from '../utils/helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class UserService {
   fetchUsers(page, perPage, where) {
     return this.apollo.watchQuery({
       query: gql`
-        query fetchUsers {
-          getUsers(where: {}, restrict: { limit: ${perPage}, skip: ${perPage * page}}) {
+        query fetchUsers($where: JSONObject!, $restrict: JSONObject!) {
+          getUsers(where: $where, restrict: $restrict) {
             _id,
             first_name,
             last_name,
@@ -28,6 +29,10 @@ export class UserService {
           }
         }
       `,
+      variables: {
+        where: parseUserSearchFilter(where),
+        restrict: { limit: perPage, skip: perPage * page },
+      }
     }).valueChanges;
   }
 

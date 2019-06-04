@@ -36,5 +36,5 @@ export interface CreateUserModel {
 export interface FetchUsersModel {
     page: number;
     perPage: number;
-    where: Object;
+    where: string;
 }

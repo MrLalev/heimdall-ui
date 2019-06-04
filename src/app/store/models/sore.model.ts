@@ -12,6 +12,6 @@ export interface SocialStoreModel {
     users: Array<UserModel>;
     page: number;
     perPage: number;
-    where: Object;
+    where: string;
     error: string;
 }
