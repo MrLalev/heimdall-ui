@@ -31,4 +31,11 @@ export class SocialPage implements OnInit {
     // tslint:disable-next-line:max-line-length
     this.store.dispatch(UserActions.fetchUsersAction({ payload: { page : ++socialData.page, perPage: socialData.perPage, where: socialData.where}}));
   }
+
+  onSearchChange(event) {
+    const where = event.detail.value;
+    const socialData = getStateSnapshot(this.store, FROM_STORE.SOCIAL_DATA);
+    this.store.dispatch(UserActions.refetchUsersAction({ payload: { page : 0, perPage: socialData.perPage, where }}));
+  }
+
 }
