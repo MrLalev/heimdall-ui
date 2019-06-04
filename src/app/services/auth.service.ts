@@ -28,8 +28,8 @@ export class AuthService {
   authorize(email, password) {
     return this.apollo.mutate({
       mutation: gql`
-        mutation authorize{
-          authorize(input: {email: "${email}", password: "${password}"}) {
+        mutation authorize($input: AuthInputType!){
+          authorize(input: $input) {
             token,
             refreshToken,
             user {
@@ -50,6 +50,12 @@ export class AuthService {
           }
         }
       `,
+      variables: {
+        input: {
+          email: email,
+          password: password
+        }
+      }
     });
   }
 }

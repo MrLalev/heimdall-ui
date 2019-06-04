@@ -40,13 +40,8 @@ export class UserService {
   createUser(user: CreateUserModel) {
     return this.apollo.mutate({
       mutation: gql`
-        mutation createUser {
-            createUser(input: {
-              first_name: "${user.first_name}",
-              last_name: "${user.last_name}",
-              email: "${user.email}",
-              password: "${user.password}"
-            }) {
+        mutation createUser($input: UserInputType!) {
+            createUser(input: $input) {
               first_name,
               last_name,
               email,
@@ -54,6 +49,14 @@ export class UserService {
           }
         }
       `,
+      variables: {
+        input: {
+          first_name: user.first_name,
+          last_name: user.last_name,
+          email: user.email,
+          password: user.password
+        }
+      }
     });
   }
 }
