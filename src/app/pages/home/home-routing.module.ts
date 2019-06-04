@@ -32,6 +32,10 @@ const routes: Routes = [
           {
             path: PAGE_ROUTES.SOCIAL,
             loadChildren: '../social/social.module#SocialPageModule',
+          },
+          {
+            path: `${PAGE_ROUTES.PROFILE}/:id`,
+            loadChildren: '../profile/profile.module#ProfilePageModule',
           }
         ]
     },

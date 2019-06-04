@@ -10,6 +10,7 @@ export const PAGE_ROUTES = {
     SCHEDULE: 'schedule',
     GOALS: 'goals',
     SOCIAL: 'social',
+    PROFILE: 'profile',
 };
 
 export const FROM_STORE = {

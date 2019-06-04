@@ -1,7 +1,7 @@
 <ion-menu side="start" menuId="main" content-id="content">
   <ion-header>
     <ion-toolbar *ngIf="(authData | async)?.user">
-      <div class="avatar-wrapper">
+      <div class="avatar-wrapper" (click)="onProfileSelect()">
         <ngx-avatar
           name=" {{ (authData | async)?.user.first_name }} {{ (authData | async)?.user.last_name }}"
           size="45"

@@ -7,6 +7,7 @@ import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { PAGE_ROUTES, FROM_STORE } from '../../utils/constants';
 import { MenuController } from '@ionic/angular';
+import { getStateSnapshot } from '../../store/selectors/base-selector';
 
 @Component({
   selector: 'app-home',
@@ -56,5 +57,11 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authDataSub.unsubscribe();
     this.routeSub.unsubscribe();
+  }
+
+  onProfileSelect() {
+    const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
+    this.router.navigate([`/${PAGE_ROUTES.HOME}/${PAGE_ROUTES.PROFILE}`, authState.user._id]);
+    this.menu.close('main');
   }
 }
