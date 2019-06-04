@@ -11,3 +11,8 @@ export const PAGE_ROUTES = {
     GOALS: 'goals',
     SOCIAL: 'social',
 };
+
+export const FROM_STORE = {
+    AUTH_DATA: 'AuthState',
+    SOCIAL_DATA: 'SocialState',
+};

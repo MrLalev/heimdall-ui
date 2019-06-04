@@ -5,6 +5,7 @@ import { SocialStoreModel } from '../../store/models/sore.model';
 import { Observable } from 'rxjs';
 import { getStateSnapshot } from '../../store/selectors/base-selector';
 import * as UserActions from '../../store/actions/user.actions';
+import { FROM_STORE } from '../../utils/page-routes';
 
 @Component({
   selector: 'app-social',
@@ -15,11 +16,11 @@ export class SocialPage implements OnInit {
   socialData: Observable<SocialStoreModel>;
 
   constructor(private store: Store<AppState>) {
-    this.socialData = this.store.pipe(select('SocialState'));
+    this.socialData = this.store.pipe(select(FROM_STORE.SOCIAL_DATA));
   }
 
   ngOnInit(): void {
-    const socialData = getStateSnapshot(this.store, 'SocialState');
+    const socialData = getStateSnapshot(this.store, FROM_STORE.SOCIAL_DATA);
     if (socialData.users.length === 0) {
       this.store.dispatch(UserActions.fetchUsersAction({ payload: { page : 0, perPage: 10, where: {}}}));
     }

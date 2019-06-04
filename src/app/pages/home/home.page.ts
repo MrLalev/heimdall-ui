@@ -5,7 +5,7 @@ import * as AuthActions from '../../store/actions/auth.actions';
 import { Observable, Subscription } from 'rxjs';
 import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { PAGE_ROUTES } from '../../utils/page-routes';
+import { PAGE_ROUTES, FROM_STORE } from '../../utils/page-routes';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -22,7 +22,7 @@ export class HomePage implements OnInit, OnDestroy {
   activeRoute: string;
 
   constructor(private store: Store<AppState>, private router: Router, private menu: MenuController) {
-    this.authData = this.store.pipe(select('AuthState'));
+    this.authData = this.store.pipe(select(FROM_STORE.AUTH_DATA));
     this.routeName = this.router.url.replace('/home/', '').toUpperCase();
     this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
   }

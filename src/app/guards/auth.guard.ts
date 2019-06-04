@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { getStateSnapshot } from '../store/selectors/base-selector';
+import { FROM_STORE } from '../utils/page-routes';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const authState = getStateSnapshot(this.store, 'AuthState');
+    const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
 
     if (!authState.user) {
       this.router.navigate(['/login']);

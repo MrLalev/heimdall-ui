@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { getToastSettings } from '../../utils/helpers';
-import { PAGE_ROUTES } from '../../utils/page-routes';
+import { PAGE_ROUTES, FROM_STORE } from '../../utils/page-routes';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +48,7 @@ export class LoginPage implements OnInit, OnDestroy {
   activeSlide = this.slides.logIn;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>, private router: Router, private toastController: ToastController) {
-    this.authData = this.store.pipe(select('AuthState'));
+    this.authData = this.store.pipe(select(FROM_STORE.AUTH_DATA));
   }
 
   ngOnInit() {
