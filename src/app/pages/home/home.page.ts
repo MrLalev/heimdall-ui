@@ -36,7 +36,7 @@ export class HomePage implements OnInit, OnDestroy {
     });
 
     this.routeSub = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd && !this.router.url.includes(PAGE_ROUTES.PROFILE)) {
         this.routeName = this.router.url.replace('/home/', '').toUpperCase();
         this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
       }
@@ -61,7 +61,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   onProfileSelect() {
     const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
-    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, authState.user._id]);
+    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, authState.user._id], { state: { previousRoute: this.router.url } });
     this.menu.close('main');
   }
 }

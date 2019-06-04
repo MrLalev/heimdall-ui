@@ -16,6 +16,6 @@ export class UserCardComponent implements OnInit {
   ngOnInit(): void {}
 
   onProfileSelect() {
-    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, this.user._id]);
+    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, this.user._id], { state: { previousRoute: this.router.url } });
   }
 }
