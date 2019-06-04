@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Routes } from '@angular/router';
+import { UserCardComponent } from '../../components/user-card/user-card.component';
+import { AvatarModule } from 'ngx-avatar';
 
 import { SocialPage } from './social.page';
 
@@ -18,8 +20,12 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    AvatarModule
   ],
-  declarations: [SocialPage]
+  declarations: [
+    SocialPage,
+    UserCardComponent
+  ]
 })
 export class SocialPageModule {}

@@ -1,0 +1,41 @@
+<div class="avatar-wrapper">
+  <ngx-avatar
+    name=" {{ user.first_name }} {{
+      user.last_name
+    }}"
+    size="45"
+    round="true"
+    bgColor="#FCB016"
+    fgColor="#333346"
+  ></ngx-avatar>
+  <div class="avatar-info">
+    <p>
+      {{ user.first_name }}
+      {{ user.last_name }}
+    </p>
+    <p *ngIf="user.personal_data?.country">
+      {{ user.personal_data.country }}
+    </p>
+    <p *ngIf="!user.personal_data?.country">
+      {{ user.email }}
+    </p>
+  </div>
+  <div class="follow-info">
+      <div>
+            <p>
+                {{ user.followers_count }}
+            </p>
+            <p>
+                Followers
+            </p>
+      </div>
+      <div>
+            <p>
+                {{ user.following_count }}
+            </p>
+            <p>
+                Following
+            </p>
+      </div>
+  </div>
+</div>
