@@ -17,8 +17,9 @@ export class AuthEffects {
         switchMap((action: any) => {
             return this.authService.authorize(action.payload.email, action.payload.password).pipe(
                 map(result => {
-                    AuthService.setAuthTokenData({token: result.token, refreshToken: result.refreshToken});
-                    return AuthActions.authUserSuccessAction({ payload: result.data.authorize.user });
+                    const { token, refreshToken, user } = result.data.authorize;
+                    AuthService.setAuthTokenData({ token, refreshToken });
+                    return AuthActions.authUserSuccessAction({ payload: user });
                 }),
                 catchError((error: any) => {
                     return of(AuthActions.authUserErrorAction({payload: error.graphQLErrors[0].message }));
