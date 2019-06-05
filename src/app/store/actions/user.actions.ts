@@ -14,6 +14,10 @@ const REFETCH_USERS = 'REFETCH_USERS';
 const REFETCH_USERS_SUCCESS = 'REFETCH_USERS_SUCCESS';
 const REFETCH_USERS_ERROR = 'REFETCH_USERS_ERROR';
 
+const FETCH_USER_PROFILE = 'FETCH_USER_PROFILE';
+const FETCH_USER_PROFILE_SUCCESS = 'FETCH_USER_PROFILE_SUCCESS';
+const FETCH_USER_PROFILE_ERROR = 'FETCH_USER_PROFILE_ERROR';
+
 export const createUserAction = createAction(CREATE_USER, props<{ payload: CreateUserModel }>());
 export const createUserSuccessAction = createAction(CREATE_USER_SUCCESS, props<{ payload: string }>());
 export const createUserErrorAction = createAction(CREATE_USER_ERROR, props<{ payload: string }>());
@@ -27,6 +31,10 @@ export const refetchUsersAction = createAction(REFETCH_USERS, props<{ payload: F
 export const refetchUsersSuccessAction = createAction(REFETCH_USERS_SUCCESS, props<{ payload: Array<UserModel> }>());
 export const refetchUsersErrorAction = createAction(REFETCH_USERS_ERROR, props<{ payload: string }>());
 
+export const fetchUserProfileAction = createAction(FETCH_USER_PROFILE, props<{ payload: String }>());
+export const fetchUserProfileSuccessAction = createAction(FETCH_USER_PROFILE_SUCCESS, props<{ payload: UserModel }>());
+export const fetchUserProfileErrorAction = createAction(FETCH_USER_PROFILE_ERROR, props<{ payload: string }>());
+
 const actions = union({
     createUserAction,
     createUserSuccessAction,
@@ -38,6 +46,9 @@ const actions = union({
     refetchUsersAction,
     refetchUsersSuccessAction,
     refetchUsersErrorAction,
+    fetchUserProfileAction,
+    fetchUserProfileSuccessAction,
+    fetchUserProfileErrorAction,
 });
 
 export type UserActionsType = typeof actions;

@@ -7,7 +7,7 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
 import { AvatarModule } from 'ngx-avatar';
 
 import { SocialPage } from './social.page';
-import { UsersListComponent } from '../../components/users-list/users-list.component';
+import { SharedModule } from '../../components/shared.module';
 
 const routes: Routes = [
   {
@@ -22,12 +22,10 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    AvatarModule
+    SharedModule
   ],
   declarations: [
     SocialPage,
-    UserCardComponent,
-    UsersListComponent
   ]
 })
 export class SocialPageModule {}

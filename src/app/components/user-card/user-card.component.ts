@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserModel } from '../../store/models/user.model';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { PAGE_ROUTES } from '../../utils/constants';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.state';
+import * as UserActions from '../../store/actions/user.actions';
 
 @Component({
   selector: 'app-user-card',
@@ -11,11 +14,12 @@ import { PAGE_ROUTES } from '../../utils/constants';
 export class UserCardComponent implements OnInit {
   @Input() user: UserModel;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
-  onProfileSelect() {
-    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, this.user._id], { state: { previousRoute: this.router.url } });
+  onProfileSelect(userId) {
+    this.store.dispatch(UserActions.fetchUserProfileAction({ payload: userId }));
+    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`], { state: { previousRoute: this.router.url } });
   }
 }

@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+
 import { SocialStoreModel } from '../models/sore.model';
 import * as UserActions from '../actions/user.actions';
 

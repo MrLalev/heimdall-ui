@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import * as AuthActions from '../../store/actions/auth.actions';
+import * as UserActions from '../../store/actions/user.actions';
 import { Observable, Subscription } from 'rxjs';
 import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -61,7 +62,8 @@ export class HomePage implements OnInit, OnDestroy {
 
   onProfileSelect() {
     const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
-    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`, authState.user._id], { state: { previousRoute: this.router.url, isPermitted: true } });
+    this.store.dispatch(UserActions.fetchUserProfileAction({ payload: authState.user._id }));
+    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`], { state: { previousRoute: this.router.url, isPermitted: true } });
     this.menu.close('main');
   }
 }

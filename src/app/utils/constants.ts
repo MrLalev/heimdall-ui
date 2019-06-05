@@ -16,6 +16,7 @@ export const PAGE_ROUTES = {
 export const FROM_STORE = {
     AUTH_DATA: 'AuthState',
     SOCIAL_DATA: 'SocialState',
+    PROFILE_STATE: 'ProfileState',
 };
 
 export const SEARCH_FIELDS = {

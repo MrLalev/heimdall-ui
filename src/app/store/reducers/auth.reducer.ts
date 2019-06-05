@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { AuthUserStoreModel } from '../models/sore.model';
 import * as AuthActions from '../actions/auth.actions';
 import * as UserActions from '../actions/user.actions';

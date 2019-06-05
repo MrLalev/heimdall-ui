@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: `${PAGE_ROUTES.PROFILE}/:id`,
+    path: PAGE_ROUTES.PROFILE,
     loadChildren: './pages/profile/profile.module#ProfilePageModule',
     canActivate: [AuthGuard],
   },

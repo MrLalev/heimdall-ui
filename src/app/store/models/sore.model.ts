@@ -15,3 +15,9 @@ export interface SocialStoreModel {
     where: string;
     error: string;
 }
+
+export interface ProfileStoreModel {
+    loading: boolean;
+    user: UserModel;
+    error: string;
+}

@@ -6,5 +6,7 @@
     </ion-toolbar>
 </ion-header>
 <ion-content id="profile-content">
-    PROFILE
+    <div *ngIf="(profileData | async)?.user">
+        <app-user-card [user]="(profileData | async)?.user"></app-user-card>
+    </div>
 </ion-content>

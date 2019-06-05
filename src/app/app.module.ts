@@ -18,6 +18,7 @@ import { GraphQLModule } from './graphql.module';
 import { authReducer } from './store/reducers/auth.reducer';
 import { effects } from './store/effects';
 import { socialReducer } from './store/reducers/social.reducer';
+import { profileReducer } from './store/reducers/profile.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { socialReducer } from './store/reducers/social.reducer';
     StoreModule.forRoot({
       AuthState: authReducer,
       SocialState: socialReducer,
+      ProfileState: profileReducer
     }),
     EffectsModule.forRoot(effects),
     AppRoutingModule,

@@ -86,4 +86,31 @@ export class UserService {
       }
     });
   }
+
+  fetchUserProfile(userId) {
+    console.log('fuck this shit', userId);
+    return this.apollo.watchQuery({
+      query: gql`
+        query fetchUsers($where: JSONObject!, $restrict: JSONObject!) {
+          getUsers(where: $where, restrict: $restrict) {
+            _id,
+            first_name,
+            last_name,
+            email,
+            followers_count,
+            following_count,
+            personal_data {
+              country,
+              description
+            },
+            personal_trainings
+          }
+        }
+      `,
+      variables: {
+        where: { _id: userId},
+        restrict: { limit: 1, skip: 0 },
+      },
+    }).valueChanges;
+  }
 }
