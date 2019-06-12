@@ -4,14 +4,15 @@
     </ion-fab-button>
     
     <ion-fab-list side="top">
-        <ion-fab-button color="primary">
-            <ion-icon name="walk"></ion-icon>
+        <ion-fab-button color="primary" (click)="onCreateExercise()">
+            <ion-icon name="fitness"></ion-icon>
         </ion-fab-button>
-        <ion-fab-button color="primary">
+        <ion-fab-button color="primary" (click)="onCreateTraining()">
             <ion-icon name="stopwatch"></ion-icon>
         </ion-fab-button>
     </ion-fab-list>
 </ion-fab>
+<ion-searchbar placeholder="Filter Trainings" debounce="500" ></ion-searchbar>
 <ion-content id="myplan-content">
   <ion-card class="welcome-card">
     <ion-img src="/assets/shapes.svg"></ion-img>

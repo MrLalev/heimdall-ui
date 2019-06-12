@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { AvatarModule } from '../../../node_modules/ngx-avatar';
+import { AvatarModule } from 'ngx-avatar';
+import { CreateExerciseComponent } from './modals/create-exercice/create-exercise.component';
+import { CreateTrainingComponent } from './modals/create-training/create-training.component';
 
 @NgModule({
   imports: [
@@ -15,11 +17,19 @@ import { AvatarModule } from '../../../node_modules/ngx-avatar';
   ],
   declarations: [
     UserCardComponent,
-    UsersListComponent
+    UsersListComponent,
+    CreateExerciseComponent,
+    CreateTrainingComponent,
   ],
   exports: [
     UserCardComponent,
-    UsersListComponent
+    UsersListComponent,
+    CreateExerciseComponent,
+    CreateTrainingComponent,
+  ],
+  entryComponents: [
+    CreateExerciseComponent,
+    CreateTrainingComponent,
   ]
 })
 
