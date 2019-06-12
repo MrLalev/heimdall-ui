@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { CreateExerciseComponent } from '../../../../components/modals/create-exercice/create-exercise.component';
+import { CreateExerciseComponent } from '../../../../components/modals/create-exercise/create-exercise.component';
 import { CreateTrainingComponent } from '../../../../components/modals/create-training/create-training.component';
 
 

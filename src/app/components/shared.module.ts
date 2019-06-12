@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { AvatarModule } from 'ngx-avatar';
-import { CreateExerciseComponent } from './modals/create-exercice/create-exercise.component';
+import { CreateExerciseComponent } from './modals/create-exercise/create-exercise.component';
 import { CreateTrainingComponent } from './modals/create-training/create-training.component';
 
 @NgModule({
