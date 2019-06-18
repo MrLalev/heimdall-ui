@@ -17,6 +17,7 @@ export const FROM_STORE = {
     AUTH_DATA: 'AuthState',
     SOCIAL_DATA: 'SocialState',
     PROFILE_STATE: 'ProfileState',
+    DROPDOWNS_STATE: 'DropdownsState',
 };
 
 export const SEARCH_FIELDS = {

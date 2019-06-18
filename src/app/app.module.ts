@@ -19,6 +19,7 @@ import { authReducer } from './store/reducers/auth.reducer';
 import { effects } from './store/effects';
 import { socialReducer } from './store/reducers/social.reducer';
 import { profileReducer } from './store/reducers/profile.reducer';
+import { dropdownsReducer } from './store/reducers/dropdowns.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,8 @@ import { profileReducer } from './store/reducers/profile.reducer';
     StoreModule.forRoot({
       AuthState: authReducer,
       SocialState: socialReducer,
-      ProfileState: profileReducer
+      ProfileState: profileReducer,
+      DropdownsState: dropdownsReducer,
     }),
     EffectsModule.forRoot(effects),
     AppRoutingModule,

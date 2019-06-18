@@ -21,3 +21,13 @@ export interface ProfileStoreModel {
     user: UserModel;
     error: string;
 }
+
+export interface MuscleGroupsStoreModel {
+    loading: boolean;
+    error: string;
+    groups: Array<string>;
+}
+
+export interface DropdownsStoreModel {
+    muscleGroups: MuscleGroupsStoreModel;
+}
