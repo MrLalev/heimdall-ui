@@ -21,7 +21,6 @@ export class CreateExerciseComponent implements OnInit {
 
   ngOnInit(): void {
     const dropdownsData = getStateSnapshot(this.store, FROM_STORE.DROPDOWNS_STATE);
-    console.log(dropdownsData, FROM_STORE.DROPDOWNS_STATE);
     if (dropdownsData.muscleGroups.groups.length === 0) {
       this.store.dispatch(DropdownActions.getMuscleGroupsAction());
     }
