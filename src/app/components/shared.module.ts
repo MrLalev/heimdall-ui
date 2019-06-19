@@ -8,6 +8,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { CreateExerciseComponent } from './modals/create-exercise/create-exercise.component';
 import { CreateTrainingComponent } from './modals/create-training/create-training.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './modals/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -22,16 +23,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersListComponent,
     CreateExerciseComponent,
     CreateTrainingComponent,
+    ProfileComponent,
   ],
   exports: [
     UserCardComponent,
     UsersListComponent,
     CreateExerciseComponent,
     CreateTrainingComponent,
+    ProfileComponent,
   ],
   entryComponents: [
     CreateExerciseComponent,
     CreateTrainingComponent,
+    ProfileComponent,
   ]
 })
 

@@ -7,6 +7,7 @@ import { AvatarModule } from 'ngx-avatar';
 
 import { HomePage } from './home.page';
 import { HomeRoutingModule } from './home-routing.module';
+import { SharedModule } from '../../components/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { HomeRoutingModule } from './home-routing.module';
     FormsModule,
     IonicModule,
     HomeRoutingModule,
-    AvatarModule
+    AvatarModule,
+    SharedModule,
   ],
   declarations: [HomePage]
 })

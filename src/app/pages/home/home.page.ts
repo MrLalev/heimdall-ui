@@ -7,8 +7,9 @@ import { Observable, Subscription } from 'rxjs';
 import { AuthUserStoreModel } from '../../store/models/sore.model';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { PAGE_ROUTES, FROM_STORE } from '../../utils/constants';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { getStateSnapshot } from '../../store/selectors/base-selector';
+import { ProfileComponent } from '../../components/modals/profile/profile.component';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ export class HomePage implements OnInit, OnDestroy {
   routeName: string;
   activeRoute: string;
 
-  constructor(private store: Store<AppState>, private router: Router, private menu: MenuController) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private store: Store<AppState>, private router: Router, private menu: MenuController, private modalController: ModalController) {
     this.authData = this.store.pipe(select(FROM_STORE.AUTH_DATA));
     this.routeName = this.router.url.replace('/home/', '').toUpperCase();
     this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
@@ -37,7 +39,7 @@ export class HomePage implements OnInit, OnDestroy {
     });
 
     this.routeSub = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && !this.router.url.includes(PAGE_ROUTES.PROFILE)) {
+      if (event instanceof NavigationEnd) {
         this.routeName = this.router.url.replace('/home/', '').toUpperCase();
         this.activeRoute = this.router.url.replace('/home/', '').split('/')[0];
       }
@@ -60,10 +62,14 @@ export class HomePage implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
 
-  onProfileSelect() {
+  onProfileSelect = async() => {
     const authState = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA);
     this.store.dispatch(UserActions.fetchUserProfileAction({ payload: authState.user._id }));
-    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`], { state: { previousRoute: this.router.url, isPermitted: true } });
+    const modal = await this.modalController.create({
+      component: ProfileComponent,
+      componentProps: { isPermitted: true }
+    });
     this.menu.close('main');
+    return await modal.present();
   }
 }

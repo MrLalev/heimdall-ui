@@ -5,6 +5,8 @@ import { PAGE_ROUTES } from '../../utils/constants';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../app.state';
 import * as UserActions from '../../store/actions/user.actions';
+import { ModalController } from '@ionic/angular';
+import { ProfileComponent } from '../modals/profile/profile.component';
 
 @Component({
   selector: 'app-user-card',
@@ -14,12 +16,16 @@ import * as UserActions from '../../store/actions/user.actions';
 export class UserCardComponent implements OnInit {
   @Input() user: UserModel;
 
-  constructor(private router: Router, private store: Store<AppState>) {}
+  constructor(private router: Router, private store: Store<AppState>, private modalController: ModalController) {}
 
   ngOnInit(): void {}
 
-  onProfileSelect(userId) {
+  onProfileSelect = async(userId) => {
     this.store.dispatch(UserActions.fetchUserProfileAction({ payload: userId }));
-    this.router.navigate([`/${PAGE_ROUTES.PROFILE}`], { state: { previousRoute: this.router.url } });
+    const modal = await this.modalController.create({
+      component: ProfileComponent,
+      componentProps: {}
+    });
+    return await modal.present();
   }
 }
