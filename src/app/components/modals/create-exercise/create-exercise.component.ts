@@ -7,6 +7,8 @@ import { AppState } from '../../../app.state';
 import { FROM_STORE } from '../../../utils/constants';
 import { getStateSnapshot } from '../../../store/selectors/base-selector';
 import * as DropdownActions from '../../../store/actions/dropdowns.actions';
+import * as ExerciseActions from '../../../store/actions/exercise.actions';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create-exercise',
@@ -15,7 +17,14 @@ import * as DropdownActions from '../../../store/actions/dropdowns.actions';
 })
 export class CreateExerciseComponent implements OnInit {
   dropdownsData: Observable<DropdownsStoreModel>;
-  constructor(private modalController: ModalController, private store: Store<AppState>) {
+  form = this.fb.group({
+    name: [''],
+    description: [''],
+    video_materials: [''],
+    muscle_group: [],
+  });
+
+  constructor(private fb: FormBuilder, private modalController: ModalController, private store: Store<AppState>) {
     this.dropdownsData = this.store.pipe(select(FROM_STORE.DROPDOWNS_STATE));
   }
 
@@ -24,6 +33,11 @@ export class CreateExerciseComponent implements OnInit {
     if (dropdownsData.muscleGroups.groups.length === 0) {
       this.store.dispatch(DropdownActions.getMuscleGroupsAction());
     }
+  }
+
+  onCreateExercise() {
+    const created_by = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA).user._id;
+    this.store.dispatch(ExerciseActions.createExerciseAction({ payload: { ...this.form.value, private: true, created_by } }));
   }
 
   dismiss() {

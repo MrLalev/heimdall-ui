@@ -33,7 +33,6 @@ export class ExerciseService {
     }).valueChanges;
   }
 
-
   createExercise(exercise: CreateExerciseModel) {
     return this.apollo.mutate({
       mutation: gql`

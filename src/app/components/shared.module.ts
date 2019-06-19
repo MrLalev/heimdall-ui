@@ -7,13 +7,15 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { AvatarModule } from 'ngx-avatar';
 import { CreateExerciseComponent } from './modals/create-exercise/create-exercise.component';
 import { CreateTrainingComponent } from './modals/create-training/create-training.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AvatarModule
+    AvatarModule,
+    ReactiveFormsModule
   ],
   declarations: [
     UserCardComponent,
