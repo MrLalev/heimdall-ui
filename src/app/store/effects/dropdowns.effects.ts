@@ -5,7 +5,7 @@ import { switchMap, map, catchError, } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { AppState } from '../../app.state';
 import { Store } from '@ngrx/store';
-import { DropdownsService } from 'src/app/services/dropdowns.service';
+import { DropdownsService } from '../../services/dropdowns.service';
 
 @Injectable()
 export class DropdownsEffects {
@@ -16,7 +16,7 @@ export class DropdownsEffects {
         ofType(DropdownActions.getMuscleGroupsAction.type),
         switchMap((action: any) => {
             return this.dropdownsService.getMuscleGroups().pipe(
-                map(result => {
+                map((result: any) => {
                     return DropdownActions.getMuscleGroupsSuccessAction({ payload: result.data.getMuscleGroupList.values });
                 }),
                 catchError((error: any) => {
