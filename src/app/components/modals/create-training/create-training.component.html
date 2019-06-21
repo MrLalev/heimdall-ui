@@ -1,3 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <div class="modal-header">
+            <ion-title>CREATE TRAINING</ion-title>
+            <span (click)="dismiss()">CLOSE</span>
+        </div>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-    Create Training
+    <form class="create-training-form" [formGroup]="form">
+        <ion-item>
+            <ion-input formControlName="name" type="text" placeholder="Name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-input formControlName="relative_time" type="number" placeholder="Relative Time"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Private Training</ion-label>
+            <ion-select formControlName="private">
+                <ion-select-option value="false" selected>FALSE</ion-select-option>
+                <ion-select-option value="true">TRUE</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- <ion-item>
+            <ion-label>Muscle Group</ion-label>
+            <ion-select formControlName="muscle_group" multiple="true">
+                <ion-select-option *ngFor="let group of (dropdownsData | async)?.muscleGroups.groups" value="{{ group }}">{{ group }}</ion-select-option>
+            </ion-select>
+        </ion-item> -->
+
+        <!-- <ion-item>
+            <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
+        </ion-item> -->
+        
+        <ion-button class="sign-in-btn" expand="block" (click)="onCreateTraining()">
+            CREATE
+        </ion-button>
+    </form>
 </ion-content>

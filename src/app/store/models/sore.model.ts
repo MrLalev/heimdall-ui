@@ -1,4 +1,6 @@
 import { UserModel } from './user.model';
+import { ExerciseModel } from './exercise.model';
+import { SetModel } from './training.model';
 
 export interface AuthUserStoreModel {
     loading: boolean;
@@ -28,6 +30,13 @@ export interface MuscleGroupsStoreModel {
     groups: Array<string>;
 }
 
+export interface ExerciseStoreModel {
+    loading: boolean;
+    error: string;
+    exercises: Array<{ exercise: ExerciseModel, set: Array<SetModel> }>;
+}
+
 export interface DropdownsStoreModel {
     muscleGroups: MuscleGroupsStoreModel;
+    exercisesGroups: ExerciseStoreModel;
 }
