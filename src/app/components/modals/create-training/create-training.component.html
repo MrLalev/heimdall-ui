@@ -34,7 +34,15 @@
         <!-- <ion-item>
             <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
         </ion-item> -->
-        
+        <ion-auto-complete
+                   [multi]="false"
+                   [dataProvider]="exerciseAutocomplateService"
+                   [disabled]="false"
+                   #searchbar
+                   [options]="options"
+                   (itemSelected)="onExerciseSelected($event)"
+                   (ionAutoInput)="onExerciseFilterChange($event)"></ion-auto-complete>
+
         <ion-button class="sign-in-btn" expand="block" (click)="onCreateTraining()">
             CREATE
         </ion-button>

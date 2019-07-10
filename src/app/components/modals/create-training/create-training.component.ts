@@ -9,6 +9,9 @@ import { getStateSnapshot } from '../../../store/selectors/base-selector';
 import * as TrainingActions from '../../../store/actions/training.actions';
 import * as ExerciseActions from '../../../store/actions/exercise.actions';
 import { FormBuilder } from '@angular/forms';
+import { ExerciseAutocomplateService } from 'src/app/services/exercise.autocomplate.service';
+import { AutoCompleteOptions, AutoCompleteComponent } from 'ionic4-auto-complete';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-create-training',
@@ -17,13 +20,42 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateTrainingComponent implements OnInit {
   dropdownsData: Observable<DropdownsStoreModel>;
+  @ViewChild('searchbar')
+  searchbar: AutoCompleteComponent;
+
   form = this.fb.group({
     name: [''],
     relative_time: [''],
     private: ['false'],
   });
 
-  constructor(private fb: FormBuilder, private modalController: ModalController, private store: Store<AppState>) {
+
+  options: AutoCompleteOptions = {
+    animated: true,
+    autocorrect: 'off',
+    cancelButtonIcon: 'md-arrow-back',
+    cancelButtonText: 'Cancel',
+    clearIcon: 'close',
+    clearInput: false,
+    clearOnEdit: false,
+    mode: 'md',
+    noItems: '',
+    placeholder: 'Search',
+    searchIcon: 'search',
+    showCancelButton: false,
+    spellcheck: 'off',
+    value: '',
+    autocomplete: 'on',
+    debounce: 750,
+    type: 'search'
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private modalController: ModalController,
+    private store: Store<AppState>,
+    private exerciseAutocomplateService: ExerciseAutocomplateService
+  ) {
     this.dropdownsData = this.store.pipe(select(FROM_STORE.DROPDOWNS_STATE));
   }
 
@@ -43,5 +75,15 @@ export class CreateTrainingComponent implements OnInit {
 
   dismiss() {
     this.modalController.dismiss();
+  }
+
+  onExerciseSelected(exercise) {
+    console.log(exercise);
+    this.searchbar.clearValue();
+    this.searchbar.removeItem(exercise);
+  }
+
+  onExerciseFilterChange(event) {
+    console.log(event);
   }
 }

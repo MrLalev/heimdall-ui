@@ -9,6 +9,8 @@ import { CreateExerciseComponent } from './modals/create-exercise/create-exercis
 import { CreateTrainingComponent } from './modals/create-training/create-training.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './modals/profile/profile.component';
+import { AutoCompleteModule } from 'ionic4-auto-complete';
+import { ExerciseAutocomplateService } from '../services/exercise.autocomplate.service';
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { ProfileComponent } from './modals/profile/profile.component';
     FormsModule,
     IonicModule,
     AvatarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AutoCompleteModule
   ],
   declarations: [
     UserCardComponent,
@@ -36,6 +39,9 @@ import { ProfileComponent } from './modals/profile/profile.component';
     CreateExerciseComponent,
     CreateTrainingComponent,
     ProfileComponent,
+  ],
+  providers: [
+    ExerciseAutocomplateService
   ]
 })
 
