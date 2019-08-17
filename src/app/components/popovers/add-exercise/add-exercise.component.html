@@ -1,8 +1,8 @@
 <ion-content>
-    <p>1111</p>
+    <p class="exercise-name">{{ form.controls.exercise.value.name }}</p>
     <form class="create-exercise-form" [formGroup]="form">
         <div formArrayName="set" *ngFor="let s of form.get('set').controls; let i = index;">
-            <span>
+            <span class="set-number">
                 <i>SET #{{i + 1}}</i>
             </span>
             <div class="row" [formGroupName]="i">
@@ -19,7 +19,7 @@
         </div>
     </form>
     <ion-button class="sign-in-btn" expand="block" type="button" (click)="onSetAdd()">ADD SET</ion-button>
-    <div>
+    <div class="navigation-buttons">
         <ion-button expand="block" (click)="dismiss()">
             CANCEL
         </ion-button>

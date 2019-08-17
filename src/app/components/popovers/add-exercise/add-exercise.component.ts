@@ -17,7 +17,7 @@ export class AddExerciseComponent implements OnInit {
   form = this.fb.group({
     exercise: [''],
     set: this.fb.array([this.fb.group({
-      set_type: [''],
+      set_type: ['NORMAL'],
       weight: [''],
       reps: ['']
     })]),
@@ -29,11 +29,11 @@ export class AddExerciseComponent implements OnInit {
     private store: Store<AppState>,
     private navParams: NavParams
   ) {
+    const exercise = this.navParams.get('exercise');
+    this.form.controls['exercise'].setValue(exercise);
   }
 
   ngOnInit(): void {
-    const exercise = this.navParams.get('exercise');
-    this.form.controls['exercise'].setValue(exercise);
   }
 
   onSetAdd() {
@@ -50,7 +50,6 @@ export class AddExerciseComponent implements OnInit {
   }
 
   async onAddExercise() {
-    console.log('fuck you', this.form.value);
     await this.popoverController.dismiss(this.form.value);
   }
 }

@@ -15,3 +15,7 @@ ion-auto-complete {
     width: 97vw;
     margin-top: 10px;
 }
+
+ion-auto-complete .loading input.searchbar-input {
+    background: none !important;
+}

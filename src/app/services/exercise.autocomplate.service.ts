@@ -1,79 +1,77 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import {AutoCompleteService} from 'ionic4-auto-complete';
+import { AutoCompleteService } from 'ionic4-auto-complete';
+import { parseSearchFilter } from 'src/app/utils/helpers';
+import { getStateSnapshot } from '../store/selectors/base-selector';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import { FROM_STORE } from 'src/app/utils/constants';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ExerciseAutocomplateService implements AutoCompleteService {
-    labelAttribute = 'full_name';
+    labelAttribute = 'name';
     formValueAttribute?: any;
 
-    arr = [
-        {
-            first_name: 'Dominic',
-            last_name: 'Elliot',
-            full_name: 'Dominic Elliot',
-        },
-        {
-            first_name: 'Duke',
-            last_name: 'Ellington',
-            full_name: 'Duke Ellington',
-        },
-        {
-            first_name: 'Jeremy',
-            last_name: 'Quick',
-            full_name: 'Jeremy Quick',
-        },
-        {
-            first_name: 'Matt',
-            last_name: 'Smith',
-            full_name: 'Matthew Drake',
-        },
-        {
-            first_name: 'Matthew',
-            last_name: 'Drake',
-            full_name: 'Matthew Drake',
-        },
-        {
-            first_name: 'Yu',
-            last_name: 'Lee',
-            full_name: 'Yu Lee',
-        },
-        {
-            first_name: 'Zach',
-            last_name: 'Smith',
-            full_name: 'Zach Smith',
-        }
-    ];
-
     getResults(term: any) {
-        term = term.toLowerCase();
-
-        return this.arr.filter(
-          (object) => {
-             const value = object[this.labelAttribute].toLowerCase();
-             return value.includes(term);
-          }
+        const created_by = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA).user._id;
+        return this.getFilteredExercises(term, created_by).pipe(
+            map((result: any) => {
+                return result.data.getExercises;
+            })
         );
     }
 
-    // getItemLabel?(item: any) {
-    //     throw new Error("Method not implemented.");
-    // }
+    constructor(private apollo: Apollo, private store: Store<AppState>) { }
 
-  constructor(private apollo: Apollo) { }
+    getFilteredExercises(filter, user_id) {
+        const where = {};
 
-  getMuscleGroups() {
-    return this.apollo.watchQuery({
-      query: gql`
-      query getMuscleGroupList {
-        getMuscleGroupList {
-          values
+        if (filter) {
+            where['$or'] = [
+                {
+                    '$and': [{
+                        'private': false
+                    },
+                    {
+                        'name': { '$regex': `^${filter}`, '$options': 'i' }
+                    }
+                    ]
+                },
+                {
+                    '$and': [{
+                        'created_by': user_id
+                    },
+                    {
+                        'name': { '$regex': `^${filter}`, '$options': 'i' }
+                    }
+                    ]
+                }];
+        } else {
+            where['$or'] = [{
+                'private': false
+            },
+            {
+                'created_by': user_id
+            }];
         }
-      }
+
+        return this.apollo.watchQuery({
+            query: gql`
+        query getExercises($where: JSONObject!) {
+          getExercises(where: $where) {
+            _id,
+            name,
+            muscle_group,
+          }
+        }
       `,
-    }).valueChanges;
-  }
+            variables: {
+                where,
+            },
+        }).valueChanges;
+    }
 }

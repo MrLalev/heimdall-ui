@@ -29,12 +29,12 @@ export class CreateTrainingComponent implements OnInit {
   form = this.fb.group({
     name: [''],
     relative_time: [''],
-    private: ['false'],
+    private: ['true'],
     exercises: this.fb.array([]),
   });
 
   options: AutoCompleteOptions = {
-    animated: true,
+    animated: false,
     autocorrect: 'off',
     cancelButtonIcon: 'md-arrow-back',
     cancelButtonText: 'Cancel',
@@ -74,7 +74,11 @@ export class CreateTrainingComponent implements OnInit {
     const created_by = getStateSnapshot(this.store, FROM_STORE.AUTH_DATA).user._id;
     const private_option = this.form.value.private === 'true' ? true : false;
     // tslint:disable-next-line:max-line-length
-    this.store.dispatch(TrainingActions.createTrainingAction({ payload: { ...this.form.value, created_by, exercises: [], private: private_option } }));
+    this.store.dispatch(TrainingActions.createTrainingAction({ payload: { ...this.form.value, exercises: this.form.value.exercises.map(e => {
+      e.exercise = e.exercise._id;
+      e.set = e.set.value;
+      return e;
+    }), created_by, private: private_option } }));
   }
 
   dismiss() {
@@ -87,7 +91,7 @@ export class CreateTrainingComponent implements OnInit {
 
     const popover = await this.popoverController.create({
       component: AddExerciseComponent,
-      componentProps: exercise,
+      componentProps: { exercise },
       translucent: true
     });
 
