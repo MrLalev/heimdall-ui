@@ -24,16 +24,6 @@
             </ion-select>
         </ion-item>
 
-        <!-- <ion-item>
-            <ion-label>Muscle Group</ion-label>
-            <ion-select formControlName="muscle_group" multiple="true">
-                <ion-select-option *ngFor="let group of (dropdownsData | async)?.muscleGroups.groups" value="{{ group }}">{{ group }}</ion-select-option>
-            </ion-select>
-        </ion-item> -->
-
-        <!-- <ion-item>
-            <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
-        </ion-item> -->
         <ion-auto-complete
                    [multi]="false"
                    [dataProvider]="exerciseAutocomplateService"
@@ -42,6 +32,21 @@
                    [options]="options"
                    (itemSelected)="onExerciseSelected($event)"
                    (ionAutoInput)="onExerciseFilterChange($event)"></ion-auto-complete>
+
+        <div formArrayName="exercises">
+
+        </div>
+        <ion-card *ngFor="let exercise of form.get('exercises').controls; let i = index">
+            <ion-card-header>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+              <ion-card-title>Card Title</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content>
+              Keep close to Nature's heart... and break clear away, once in awhile,
+              and climb a mountain or spend a week in the woods. Wash your spirit clean.
+            </ion-card-content>
+          </ion-card>
 
         <ion-button class="sign-in-btn" expand="block" (click)="onCreateTraining()">
             CREATE

@@ -12,6 +12,9 @@ import { FormBuilder } from '@angular/forms';
 import { ExerciseAutocomplateService } from 'src/app/services/exercise.autocomplate.service';
 import { AutoCompleteOptions, AutoCompleteComponent } from 'ionic4-auto-complete';
 import { ViewChild } from '@angular/core';
+import { FormArray } from '@angular/forms';
+import { PopoverController } from '@ionic/angular';
+import { AddExerciseComponent } from '../../popovers/add-exercise/add-exercise.component';
 
 @Component({
   selector: 'app-create-training',
@@ -27,8 +30,8 @@ export class CreateTrainingComponent implements OnInit {
     name: [''],
     relative_time: [''],
     private: ['false'],
+    exercises: this.fb.array([]),
   });
-
 
   options: AutoCompleteOptions = {
     animated: true,
@@ -54,7 +57,8 @@ export class CreateTrainingComponent implements OnInit {
     private fb: FormBuilder,
     private modalController: ModalController,
     private store: Store<AppState>,
-    private exerciseAutocomplateService: ExerciseAutocomplateService
+    private exerciseAutocomplateService: ExerciseAutocomplateService,
+    private popoverController: PopoverController
   ) {
     this.dropdownsData = this.store.pipe(select(FROM_STORE.DROPDOWNS_STATE));
   }
@@ -77,10 +81,31 @@ export class CreateTrainingComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  onExerciseSelected(exercise) {
-    console.log(exercise);
+  async onExerciseSelected(exercise) {
     this.searchbar.clearValue();
     this.searchbar.removeItem(exercise);
+
+    const popover = await this.popoverController.create({
+      component: AddExerciseComponent,
+      componentProps: exercise,
+      translucent: true
+    });
+
+    popover.onDidDismiss().then(({ data }) => {
+      if (data) {
+        const exercises = this.form.get('exercises') as FormArray;
+        exercises.push(this.fb.group({
+          exercise: data.exercise,
+          set: data.set.map(s => this.fb.array([this.fb.group({
+            set_type: [s.set_type],
+            weight: [s.weight],
+            reps: [s.reps]
+          })])),
+        }));
+      }
+    });
+
+    await popover.present();
   }
 
   onExerciseFilterChange(event) {

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './modals/profile/profile.component';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { ExerciseAutocomplateService } from '../services/exercise.autocomplate.service';
+import { AddExerciseComponent } from './popovers/add-exercise/add-exercise.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { ExerciseAutocomplateService } from '../services/exercise.autocomplate.s
     CreateExerciseComponent,
     CreateTrainingComponent,
     ProfileComponent,
+    AddExerciseComponent,
   ],
   exports: [
     UserCardComponent,
@@ -34,11 +36,13 @@ import { ExerciseAutocomplateService } from '../services/exercise.autocomplate.s
     CreateExerciseComponent,
     CreateTrainingComponent,
     ProfileComponent,
+    AddExerciseComponent,
   ],
   entryComponents: [
     CreateExerciseComponent,
     CreateTrainingComponent,
     ProfileComponent,
+    AddExerciseComponent,
   ],
   providers: [
     ExerciseAutocomplateService
