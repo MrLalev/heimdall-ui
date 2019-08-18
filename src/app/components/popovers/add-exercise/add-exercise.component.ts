@@ -14,10 +14,14 @@ import { FormArray } from '@angular/forms';
   styleUrls: ['add-exercise.component.scss'],
 })
 export class AddExerciseComponent implements OnInit {
+  SETS_ENUM = {
+    NORMAL: 'NORMAL'
+  };
+
   form = this.fb.group({
     exercise: [''],
     set: this.fb.array([this.fb.group({
-      set_type: ['NORMAL'],
+      set_type: [this.SETS_ENUM.NORMAL],
       weight: [''],
       reps: ['']
     })]),
@@ -39,7 +43,7 @@ export class AddExerciseComponent implements OnInit {
   onSetAdd() {
     const set = this.form.get('set') as FormArray;
     set.push(this.fb.group({
-        set_type: [''],
+        set_type: [this.SETS_ENUM.NORMAL],
         weight: [''],
         reps: [''],
     }));

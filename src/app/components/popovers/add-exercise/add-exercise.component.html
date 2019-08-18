@@ -7,7 +7,7 @@
             </span>
             <div class="row" [formGroupName]="i">
                 <ion-item class="row-input">
-                    <ion-input formControlName="set_type" type="text" placeholder="Set Type"></ion-input>
+                    <ion-input readonly formControlName="set_type" type="text" placeholder="Set Type"></ion-input>
                 </ion-item>
                 <ion-item class="row-input">
                     <ion-input formControlName="weight" type="number" placeholder="Weight"></ion-input>
@@ -20,11 +20,11 @@
     </form>
     <ion-button class="sign-in-btn" expand="block" type="button" (click)="onSetAdd()">ADD SET</ion-button>
     <div class="navigation-buttons">
-        <ion-button expand="block" (click)="dismiss()">
-            CANCEL
-        </ion-button>
-        <ion-button class="sign-in-btn" expand="block" (click)="onAddExercise()">
+        <span (click)="onAddExercise()">
             ADD
-        </ion-button>
+        </span>
+        <span (click)="dismiss()">
+            CANCEL
+        </span>
     </div>
 </ion-content>

@@ -24,29 +24,32 @@
             </ion-select>
         </ion-item>
 
-        <ion-auto-complete
-                   [multi]="false"
-                   [dataProvider]="exerciseAutocomplateService"
-                   [disabled]="false"
-                   #searchbar
-                   [options]="options"
-                   (itemSelected)="onExerciseSelected($event)"
-                   (ionAutoInput)="onExerciseFilterChange($event)"></ion-auto-complete>
+        <ion-auto-complete [multi]="false" [dataProvider]="exerciseAutocomplateService" [disabled]="false" #searchbar [options]="options"
+            (itemSelected)="onExerciseSelected($event)" (ionAutoInput)="onExerciseFilterChange($event)"></ion-auto-complete>
 
-        <div formArrayName="exercises">
-
-        </div>
         <ion-card *ngFor="let exercise of form.get('exercises').controls; let i = index">
             <ion-card-header>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-              <ion-card-title>Card Title</ion-card-title>
+                <ion-card-subtitle>{{ exercise.controls.exercise.value.muscle_group }}</ion-card-subtitle>
+                <ion-card-title class="title">{{ exercise.controls.exercise.value.name }}</ion-card-title>
             </ion-card-header>
-          
+
             <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in awhile,
-              and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                <div class="set_table">
+                    <div>
+                        <div class="title">SETS COUNT</div>
+                        <div>{{ getSetVariable(exercise.controls.set.controls, 'set_type').length }}</div>
+                    </div>
+                    <div>
+                        <div class="title">WEIGHT</div>
+                        <div>{{ getSetVariable(exercise.controls.set.controls, 'weight') }}</div>
+                    </div>
+                    <div>
+                        <div class="title">REPS</div>
+                        <div>{{ getSetVariable(exercise.controls.set.controls, 'reps') }}</div>
+                    </div>
+                </div>
             </ion-card-content>
-          </ion-card>
+        </ion-card>
 
         <ion-button class="sign-in-btn" expand="block" (click)="onCreateTraining()">
             CREATE

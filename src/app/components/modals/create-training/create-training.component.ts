@@ -75,8 +75,7 @@ export class CreateTrainingComponent implements OnInit {
     const private_option = this.form.value.private === 'true' ? true : false;
     // tslint:disable-next-line:max-line-length
     this.store.dispatch(TrainingActions.createTrainingAction({ payload: { ...this.form.value, exercises: this.form.value.exercises.map(e => {
-      e.exercise = e.exercise._id;
-      e.set = e.set.value;
+      e.exercise = e.exercise._id ? e.exercise._id : e.exercise;
       return e;
     }), created_by, private: private_option } }));
   }
@@ -100,11 +99,11 @@ export class CreateTrainingComponent implements OnInit {
         const exercises = this.form.get('exercises') as FormArray;
         exercises.push(this.fb.group({
           exercise: data.exercise,
-          set: data.set.map(s => this.fb.array([this.fb.group({
+          set: this.fb.array(data.set.map(s => this.fb.group({
             set_type: [s.set_type],
             weight: [s.weight],
             reps: [s.reps]
-          })])),
+          }))),
         }));
       }
     });
@@ -114,5 +113,13 @@ export class CreateTrainingComponent implements OnInit {
 
   onExerciseFilterChange(event) {
     console.log(event);
+  }
+
+  getSetVariable(data, field) {
+    const result = [];
+    data.map(d => {
+      result.push(d.controls[field].value);
+    });
+    return result;
   }
 }

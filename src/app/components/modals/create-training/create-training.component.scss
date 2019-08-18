@@ -19,3 +19,14 @@ ion-auto-complete {
 ion-auto-complete .loading input.searchbar-input {
     background: none !important;
 }
+
+.title {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.set_table {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
