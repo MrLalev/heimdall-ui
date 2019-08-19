@@ -12,6 +12,7 @@ import { ProfileComponent } from './modals/profile/profile.component';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { ExerciseAutocomplateService } from '../services/exercise.autocomplate.service';
 import { AddExerciseComponent } from './popovers/add-exercise/add-exercise.component';
+import { ChangeCalendarModeComponent } from './popovers/change-calendar-mode/change-calendar-mode.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { AddExerciseComponent } from './popovers/add-exercise/add-exercise.compo
     CreateTrainingComponent,
     ProfileComponent,
     AddExerciseComponent,
+    ChangeCalendarModeComponent,
   ],
   exports: [
     UserCardComponent,
@@ -37,12 +39,14 @@ import { AddExerciseComponent } from './popovers/add-exercise/add-exercise.compo
     CreateTrainingComponent,
     ProfileComponent,
     AddExerciseComponent,
+    ChangeCalendarModeComponent,
   ],
   entryComponents: [
     CreateExerciseComponent,
     CreateTrainingComponent,
     ProfileComponent,
     AddExerciseComponent,
+    ChangeCalendarModeComponent,
   ],
   providers: [
     ExerciseAutocomplateService

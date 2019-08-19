@@ -5,7 +5,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import {ApolloLink} from 'apollo-boost';
 import {AuthService} from './services/auth.service';
 
-const uri = 'http://localhost:3000/graphql';
+const uri = 'http://localhost:3001/graphql';
 
 const authLink = new ApolloLink((operation, forward) => {
   const authData = AuthService.getAuthTokenData();

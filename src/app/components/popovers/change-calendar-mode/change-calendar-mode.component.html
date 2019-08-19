@@ -1,0 +1,20 @@
+<ion-content>
+    <p class="exercise-name">CALENDAR</p>
+    <form class="create-exercise-form" [formGroup]="form">
+        <ion-radio-group formControlName="mode">
+          <ion-item *ngFor="let mode of calendarModes">
+            <!-- <ion-label>{{mode.value}}</ion-label> -->
+            <ion-radio slot="start" [value]="mode.key"> {{mode.value}} </ion-radio>
+          </ion-item>
+        </ion-radio-group>
+    </form>
+
+    <div class="navigation-buttons">
+        <span (click)="onSetMode()">
+            SET
+        </span>
+        <span (click)="dismiss()">
+            CANCEL
+        </span>
+    </div>
+</ion-content>

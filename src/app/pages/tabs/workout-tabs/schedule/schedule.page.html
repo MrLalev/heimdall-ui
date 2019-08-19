@@ -1,3 +1,22 @@
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button color="primary">
+      <ion-icon name="settings"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="top">
+      <ion-fab-button color="primary" (click)="addEvent()">
+          <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="primary">
+          <ion-icon name="calendar" (click)="changeCalendarMode()"></ion-icon>
+      </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
 <ion-content id="schedule-content">
-    Schedule
+	<calendar
+    [monthviewEventDetailTemplate]="template"
+    [eventSource]="eventSource" [markDisabled]="markDisabled" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
+    (onTimeSelected)="onTimeSelected($event)" step="30">
+	</calendar>
 </ion-content>

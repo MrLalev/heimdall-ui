@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { AutoCompleteService } from 'ionic4-auto-complete';
-import { parseSearchFilter } from 'src/app/utils/helpers';
+import { parseSearchFilter } from '../utils/helpers';
 import { getStateSnapshot } from '../store/selectors/base-selector';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.state';
-import { FROM_STORE } from 'src/app/utils/constants';
+import { AppState } from '../app.state';
+import { FROM_STORE } from '../utils/constants';
 import { map } from 'rxjs/operators';
 
 @Injectable({
