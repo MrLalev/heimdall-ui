@@ -2,8 +2,8 @@
     <p class="exercise-name">CALENDAR</p>
     <form class="create-exercise-form" [formGroup]="form">
         <ion-radio-group formControlName="mode">
-          <ion-item *ngFor="let mode of calendarModes">
-            <!-- <ion-label>{{mode.value}}</ion-label> -->
+          <ion-item lines="none" *ngFor="let mode of calendarModes">
+            <ion-label>{{mode.value}}</ion-label>
             <ion-radio slot="start" [value]="mode.key"> {{mode.value}} </ion-radio>
           </ion-item>
         </ion-radio-group>
