@@ -13,7 +13,8 @@
   </ion-fab-list>
 </ion-fab>
 <ion-content id="schedule-content">
-	<calendar
+  <calendar
+    [scrollToHour]="startingHours"
     [monthviewEventDetailTemplate]="template"
     [eventSource]="eventSource" [markDisabled]="markDisabled" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
     (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, PopoverController } from '@ionic/angular';
+import { NavController, PopoverController, ModalController } from '@ionic/angular';
 import { ChangeCalendarModeComponent } from '../../../../components/popovers/change-calendar-mode/change-calendar-mode.component';
+import { AddEventComponent } from '../../../../components/modals/add-event/add-event.component';
 
 @Component({
   selector: 'app-schedule',
@@ -8,7 +9,7 @@ import { ChangeCalendarModeComponent } from '../../../../components/popovers/cha
   styleUrls: ['schedule.page.scss'],
 })
 export class SchedulePage implements OnInit {
-
+  startingHours = new Date().getHours();
   selectedDay = new Date();
   selectedObject;
   eventSource = [];
@@ -22,7 +23,7 @@ export class SchedulePage implements OnInit {
     currentDate: new Date()
   };
 
-  constructor(public navCtrl: NavController, private popoverController: PopoverController) {
+  constructor(public navCtrl: NavController, private popoverController: PopoverController, private modalController: ModalController) {
   }
 
   ngOnInit(): void {
@@ -84,12 +85,23 @@ export class SchedulePage implements OnInit {
     });
   }
 
-  addEvent() {
+  async addEvent() {
+    const modal = await this.modalController.create({
+      component: AddEventComponent,
+      componentProps: {}
+    });
+    modal.onDidDismiss().then(({ data }) => {
+      if (data) {
+        const eventData = data;
+        eventData.startTime = new Date(data.startTime);
+        eventData.endTime = new Date(data.endTime);
+        this.eventSource = [...this.eventSource, eventData];
+      }
+    });
+    return await modal.present();
   }
 
   onOptionSelected($event: any) {
-    console.log($event);
-    // this.calendar.mode = $event
   }
 
   async changeCalendarMode() {
