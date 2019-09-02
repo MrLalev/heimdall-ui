@@ -1,3 +1,49 @@
 <ion-content id="settings-content">
-    SETTINGS
+  <form class="create-exercise-form" [formGroup]="form">
+    <ion-item>
+      <ion-input formControlName="weight" type="number" placeholder="Weight"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="height" type="number" placeholder="Height"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select formControlName="gender" multiple="false">
+        <ion-select-option *ngFor="let group of GENDER_ARR" value="{{ group }}">{{ group }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Birthday</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="YYYY MMM D" formControlName="birthday" ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Metric System</ion-label>
+      <ion-select formControlName="metric_type" multiple="false">
+        <ion-select-option *ngFor="let metric of METRIC_ARR" value="{{ metric }}">{{ metric }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="country" type="string" placeholder="Country"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
+    </ion-item>
+
+    <!-- <ion-item>
+      <ion-textarea formControlName="description" placeholder="Description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="video_materials" type="text" placeholder="Video Material"></ion-input>
+    </ion-item> -->
+    <ion-button class="sign-in-btn" expand="block" (click)="onPersonalInformationUpdate()">
+      UPDATE
+    </ion-button>
+  </form>
 </ion-content>
