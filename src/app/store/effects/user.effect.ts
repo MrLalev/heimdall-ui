@@ -79,7 +79,6 @@ export class UserEffects {
     fetch_user_profile$ = this.actions$.pipe(
         ofType(UserActions.fetchUserProfileAction.type),
         switchMap((action: any) => {
-            console.log(action.payload);
             return this.userService.fetchUserProfile(action.payload).pipe(
                 map((result: any) => {
                     return UserActions.fetchUserProfileSuccessAction({ payload: result.data.getUsers[0] });

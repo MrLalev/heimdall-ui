@@ -45,6 +45,5 @@ export class SettingsPage implements OnInit {
   }
 
   onPersonalInformationUpdate() {
-    console.log(this.form.value);
   }
 }

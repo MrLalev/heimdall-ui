@@ -88,7 +88,6 @@ export class UserService {
   }
 
   fetchUserProfile(userId) {
-    console.log('fuck this shit', userId);
     return this.apollo.watchQuery({
       query: gql`
         query fetchUsers($where: JSONObject!, $restrict: JSONObject!) {

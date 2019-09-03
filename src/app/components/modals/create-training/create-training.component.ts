@@ -112,7 +112,6 @@ export class CreateTrainingComponent implements OnInit {
   }
 
   onExerciseFilterChange(event) {
-    console.log(event);
   }
 
   getSetVariable(data, field) {

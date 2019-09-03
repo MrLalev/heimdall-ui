@@ -34,7 +34,6 @@ export class TrainingService {
   // }
 
   createTraining(training: CreateTrainingModel) {
-    console.log(training);
     return this.apollo.mutate({
       mutation: gql`
         mutation createTraining($input: TrainingInputType!) {
