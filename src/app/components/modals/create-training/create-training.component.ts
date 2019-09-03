@@ -9,7 +9,7 @@ import { getStateSnapshot } from '../../../store/selectors/base-selector';
 import * as TrainingActions from '../../../store/actions/training.actions';
 import * as ExerciseActions from '../../../store/actions/exercise.actions';
 import { FormBuilder } from '@angular/forms';
-import { ExerciseAutocomplateService } from '../../../services/exercise.autocomplate.service';
+import { ExerciseAutocompleteService } from '../../../services/exercise.autocomplate.service';
 import { AutoCompleteOptions, AutoCompleteComponent } from 'ionic4-auto-complete';
 import { ViewChild } from '@angular/core';
 import { FormArray } from '@angular/forms';
@@ -57,7 +57,7 @@ export class CreateTrainingComponent implements OnInit {
     private fb: FormBuilder,
     private modalController: ModalController,
     private store: Store<AppState>,
-    private exerciseAutocomplateService: ExerciseAutocomplateService,
+    private exerciseAutocompleteService: ExerciseAutocompleteService,
     private popoverController: PopoverController
   ) {
     this.dropdownsData = this.store.pipe(select(FROM_STORE.DROPDOWNS_STATE));

@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ExerciseAutocomplateService } from './exercise.autocomplate.service';
+import { ExerciseAutocompleteService } from './exercise.autocomplate.service';
 
-describe('ExerciseAutocomplateService', () => {
+describe('ExerciseAutocompleteService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ExerciseAutocomplateService = TestBed.get(ExerciseAutocomplateService);
+    const service: ExerciseAutocompleteService = TestBed.get(ExerciseAutocompleteService);
     expect(service).toBeTruthy();
   });
 });

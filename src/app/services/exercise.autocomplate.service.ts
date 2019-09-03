@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
-export class ExerciseAutocomplateService implements AutoCompleteService {
+export class ExerciseAutocompleteService implements AutoCompleteService {
     labelAttribute = 'name';
     formValueAttribute?: any;
 

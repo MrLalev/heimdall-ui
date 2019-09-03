@@ -10,10 +10,11 @@ import { CreateTrainingComponent } from './modals/create-training/create-trainin
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './modals/profile/profile.component';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
-import { ExerciseAutocomplateService } from '../services/exercise.autocomplate.service';
+import { ExerciseAutocompleteService } from '../services/exercise.autocomplate.service';
 import { AddExerciseComponent } from './popovers/add-exercise/add-exercise.component';
 import { ChangeCalendarModeComponent } from './popovers/change-calendar-mode/change-calendar-mode.component';
 import { AddEventComponent } from './modals/add-event/add-event.component';
+import { CreateGoalComponent } from './modals/create-goal/create-goal.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { AddEventComponent } from './modals/add-event/add-event.component';
     AddExerciseComponent,
     ChangeCalendarModeComponent,
     AddEventComponent,
+    CreateGoalComponent,
   ],
   exports: [
     UserCardComponent,
@@ -43,6 +45,7 @@ import { AddEventComponent } from './modals/add-event/add-event.component';
     AddExerciseComponent,
     ChangeCalendarModeComponent,
     AddEventComponent,
+    CreateGoalComponent,
   ],
   entryComponents: [
     CreateExerciseComponent,
@@ -51,9 +54,10 @@ import { AddEventComponent } from './modals/add-event/add-event.component';
     AddExerciseComponent,
     ChangeCalendarModeComponent,
     AddEventComponent,
+    CreateGoalComponent,
   ],
   providers: [
-    ExerciseAutocomplateService
+    ExerciseAutocompleteService
   ]
 })
 

@@ -24,7 +24,7 @@
             </ion-select>
         </ion-item>
 
-        <ion-auto-complete [multi]="false" [dataProvider]="exerciseAutocomplateService" [disabled]="false" #searchbar [options]="options"
+        <ion-auto-complete [multi]="false" [dataProvider]="exerciseAutocompleteService" [disabled]="false" #searchbar [options]="options"
             (itemSelected)="onExerciseSelected($event)" (ionAutoInput)="onExerciseFilterChange($event)"></ion-auto-complete>
 
         <ion-card *ngFor="let exercise of form.get('exercises').controls; let i = index">
