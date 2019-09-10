@@ -20,12 +20,14 @@ import { effects } from './store/effects';
 import { socialReducer } from './store/reducers/social.reducer';
 import { profileReducer } from './store/reducers/profile.reducer';
 import { dropdownsReducer } from './store/reducers/dropdowns.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(),
     StoreModule.forRoot({
       AuthState: authReducer,

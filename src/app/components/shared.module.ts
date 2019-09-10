@@ -15,6 +15,8 @@ import { AddExerciseComponent } from './popovers/add-exercise/add-exercise.compo
 import { ChangeCalendarModeComponent } from './popovers/change-calendar-mode/change-calendar-mode.component';
 import { AddEventComponent } from './modals/add-event/add-event.component';
 import { CreateGoalComponent } from './modals/create-goal/create-goal.component';
+import { ActivityReportComponent } from './modals/activity-report/activity-report.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import { CreateGoalComponent } from './modals/create-goal/create-goal.component'
     IonicModule,
     AvatarModule,
     ReactiveFormsModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    NgxChartsModule,
   ],
   declarations: [
     UserCardComponent,
@@ -35,6 +38,7 @@ import { CreateGoalComponent } from './modals/create-goal/create-goal.component'
     ChangeCalendarModeComponent,
     AddEventComponent,
     CreateGoalComponent,
+    ActivityReportComponent,
   ],
   exports: [
     UserCardComponent,
@@ -46,6 +50,7 @@ import { CreateGoalComponent } from './modals/create-goal/create-goal.component'
     ChangeCalendarModeComponent,
     AddEventComponent,
     CreateGoalComponent,
+    ActivityReportComponent,
   ],
   entryComponents: [
     CreateExerciseComponent,
@@ -55,6 +60,7 @@ import { CreateGoalComponent } from './modals/create-goal/create-goal.component'
     ChangeCalendarModeComponent,
     AddEventComponent,
     CreateGoalComponent,
+    ActivityReportComponent,
   ],
   providers: [
     ExerciseAutocompleteService

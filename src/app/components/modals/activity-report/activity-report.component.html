@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="modal-header">
+      <ion-title>MONDAY TRAINING REPORT</ion-title>
+      <span (click)="dismiss()">CLOSE</span>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form class="create-exercise-form" [formGroup]="form">
+    <ion-item>
+      <ion-label>Report Params</ion-label>
+      <ion-select formControlName="report_params" multiple="true">
+        <ion-select-option *ngFor="let param of params" value="{{ param }}">{{ param }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
+  <div style="display: inline-block">
+    <ngx-charts-area-chart [view]="view" [scheme]="colorScheme" [results]="multi" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+      [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+      [legendPosition]="legendPosition" [autoScale]="true" [timeline]="timeline">
+    </ngx-charts-area-chart>
+  </div>
+  <div style="display: inline-block">
+    <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="multi2" [gradient]="gradient" [xAxis]="showXAxis"
+      [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel" [legendPosition]="legendPosition" [autoScale]="true" [timeline]="timeline">
+    </ngx-charts-line-chart>
+  </div>
+</ion-content>

@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^8.2.5",
     "@angular/common": "^7.2.2",
     "@angular/core": "^7.2.2",
     "@angular/forms": "^7.2.2",
@@ -26,6 +27,7 @@
     "@ionic/angular": "^4.1.0",
     "@ngrx/effects": "^7.4.0",
     "@ngrx/store": "^7.4.0",
+    "@swimlane/ngx-charts": "^12.0.1",
     "apollo-angular": "^1.5.0",
     "apollo-angular-link-http": "^1.5.0",
     "apollo-boost": "^0.3.1",
